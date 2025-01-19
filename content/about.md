@@ -1,7 +1,7 @@
 ---
 title: "About"
 hasMath: false
-subtitle: Show me a completely smooth operation and I'll show you someone who's covering mistakes. Real boats rock. - Frank Herbert
+subtitle: Show me a completely smooth operation and I'll show you someone who's covering mistakes. Real boats rock.
 _build:
   list: never
 ---
