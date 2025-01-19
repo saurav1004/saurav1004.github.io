@@ -12,7 +12,9 @@ baseurl: "https://www.narrowfoc.us"
 title: "narrowfocus"
 canonifyurls: false
 # Number of posts per page on the home page
-paginate: 5
+pagination:
+  pagerSize: 5
+
 
 # Only modify the following if you know what you are doing
 markup:
