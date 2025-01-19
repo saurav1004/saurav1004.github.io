@@ -2,26 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>http://localhost:1313/ablog/categories/</loc>
     <lastmod>2023-04-17T16:03:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>http://localhost:1313/ablog/</loc>
     <lastmod>2023-04-17T16:03:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>http://localhost:1313/ablog/posts/</loc>
     <lastmod>2023-04-17T16:03:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/templates/</loc>
+    <loc>http://localhost:1313/ablog/categories/templates/</loc>
     <lastmod>2023-04-17T16:03:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/tufte-css/</loc>
+    <loc>http://localhost:1313/ablog/posts/tufte-css/</loc>
     <lastmod>2023-04-17T16:03:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/tufte-features/</loc>
+    <loc>http://localhost:1313/ablog/posts/tufte-features/</loc>
     <lastmod>2023-04-16T16:03:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/series/</loc>
+    <loc>http://localhost:1313/ablog/series/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>http://localhost:1313/ablog/tags/</loc>
   </url>
 </urlset>
