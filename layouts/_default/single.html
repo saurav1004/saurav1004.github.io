@@ -1,0 +1,17 @@
+{{/*  
+
+    This template render single pages 
+  
+  */}}
+  
+  {{ define "main" }}
+  <section>{{ partial "nav.html" . }}</section>
+  <article id="main">
+    {{ partial "content.header.html" . }}
+    {{ partial "toc.html" . }}
+    <section>{{ .Content }}</section>
+    <section>{{ partial "footer.html" . }}</section>
+    
+  </article>
+  {{ end }}
+  
