@@ -6,7 +6,7 @@ subtitle: A Deep Dive into Theory and Implementation
 meta: true
 math: true
 toc: false
-draft: true
+draft: false
 hideDate: false
 hideReadTime: true
 categories: [AI, Game Theory]
