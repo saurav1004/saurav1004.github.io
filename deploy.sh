@@ -9,7 +9,9 @@ hugo --buildDrafts
 
 # Step 2: Clean up the 'docs' folder
 echo "Cleaning up the 'docs' folder..."
-rm -rf docs/*
+find docs/* ! -name 'CNAME' -type f -delete
+find docs/* ! -name 'CNAME' -type d -empty -delete
+
 
 # Step 3: Move the generated files to 'docs' folder
 echo "Moving generated files to 'docs' folder..."
