@@ -6,16 +6,12 @@ subtitle: A Deep Dive into Theory and Implementation
 meta: true
 math: true
 toc: false
-draft: true
+draft: false
 hideDate: false
 hideReadTime: true
 categories: [AI, Game Theory]
 description: "Unpacking the mathematics of Counterfactual Regret Minimization and implementing it from scratch in Python for a graduate audience."
 ---
-
-
-# Grokking Counterfactual Regret Minimization 
-
 {{< epigraph author="John von Neumann" cite="Theory of Games and Economic Behavior" >}}
 Real life consists of bluffing, of little tactics of deception, of asking yourself what is the other man going to think I mean to do.
 {{< /epigraph >}}

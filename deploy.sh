@@ -25,9 +25,16 @@ git add .
 # Step 6: Commit the changes with commit ID in the message
 echo "Committing changes with commit ID..."
 git commit -m "Deploy generated files (commit: $commit_id)"
+echo "Commit : Complete"
 
-# Step 7: Push to the main branch
-echo "Pushing changes to 'main' branch..."
+# Step 7: Pulling and pushing to the remote main branch
+echo "Pulling changes from remote"
+
+git pull --rebase
+
+echo "Pull : Complete" 
+echo "Pushing changes to remote"
+
 git push origin main
-
-echo "Deployment complete!"
+echo "Push : Complete"
+echo "Deployment : Complete! check out www.github.com/saurav1004/saurav1004.github.io "
