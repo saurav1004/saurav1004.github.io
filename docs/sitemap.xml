@@ -2,26 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://saurav1004.github.io/categories/ai/</loc>
+    <lastmod>2025-03-12T10:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://saurav1004.github.io/categories/</loc>
+    <lastmod>2025-03-12T10:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://saurav1004.github.io/categories/game-theory/</loc>
+    <lastmod>2025-03-12T10:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://saurav1004.github.io/posts/grokking-cfr2/</loc>
+    <lastmod>2025-03-12T10:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://saurav1004.github.io/</loc>
+    <lastmod>2025-03-12T10:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://saurav1004.github.io/posts/</loc>
+    <lastmod>2025-03-12T10:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://saurav1004.github.io/posts/grokking-cfr/</loc>
     <lastmod>2023-04-17T16:03:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://saurav1004.github.io/categories/templates/</loc>
     <lastmod>2023-04-17T16:03:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://saurav1004.github.io/posts/tufte-css/</loc>
     <lastmod>2023-04-17T16:03:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/templates/</loc>
-    <lastmod>2023-04-17T16:03:45+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/tufte-css/</loc>
-    <lastmod>2023-04-17T16:03:45+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/tufte-features/</loc>
+    <loc>https://saurav1004.github.io/posts/tufte-features/</loc>
     <lastmod>2023-04-16T16:03:45+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/series/</loc>
+    <loc>https://saurav1004.github.io/series/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://saurav1004.github.io/tags/</loc>
   </url>
 </urlset>

@@ -2,24 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on narrowfocus</title>
-    <link>http://localhost:1313/posts/</link>
+    <link>https://saurav1004.github.io/posts/</link>
     <description>Recent content in Posts on narrowfocus</description>
     <generator>Hugo</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 17 Apr 2023 16:03:45 +0100</lastBuildDate>
-    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Mar 2025 10:00:00 +0000</lastBuildDate>
+    <atom:link href="https://saurav1004.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Grokking Counterfactual Regret Minimization</title>
+      <link>https://saurav1004.github.io/posts/grokking-cfr2/</link>
+      <pubDate>Wed, 12 Mar 2025 10:00:00 +0000</pubDate>
+      <guid>https://saurav1004.github.io/posts/grokking-cfr2/</guid>
+      <description>Grokking Counterfactual Regret Minimization # Real life consists of bluffing, of little tactics of deception, of asking yourself what is the other man going to think I mean to do.&#xA;John von Neumann, Theory of Games and Economic Behavior Counterfactual Regret Minimization (CFR) is a cornerstone algorithm in artificial intelligence for solving imperfect-information games—scenarios like poker where players operate with incomplete knowledge. Pioneered by Martin Zinkevich et al. in 2007, CFR has propelled AI to superhuman levels in games such as Heads-Up No-Limit Texas Hold&amp;rsquo;em.</description>
+    </item>
+    <item>
+      <title>Grokking CFR</title>
+      <link>https://saurav1004.github.io/posts/grokking-cfr/</link>
+      <pubDate>Mon, 17 Apr 2023 16:03:45 +0100</pubDate>
+      <guid>https://saurav1004.github.io/posts/grokking-cfr/</guid>
+      <description>CFR is an iterative algorithm designed to compute Nash equilibria in extensive-form games with imperfect information. A Nash equilibrium is a strategy profile where no player can improve their payoff by unilaterally deviating from their strategy. Unlike perfect-information games (e.g., chess), where backward induction or minimax can suffice, imperfect-information games require handling uncertainty over hidden states, modeled via information sets. An information set groups game states that a player cannot distinguish given their knowledge.</description>
+    </item>
     <item>
       <title>Tufte CSS</title>
-      <link>http://localhost:1313/posts/tufte-css/</link>
+      <link>https://saurav1004.github.io/posts/tufte-css/</link>
       <pubDate>Mon, 17 Apr 2023 16:03:45 +0100</pubDate>
-      <guid>http://localhost:1313/posts/tufte-css/</guid>
+      <guid>https://saurav1004.github.io/posts/tufte-css/</guid>
       <description>Tufte CSS provides tools to style web articles using the ideas demonstrated by Edward Tufte’s books and handouts. Tufte’s style is known for its simplicity, extensive use of sidenotes, tight integration of graphics with text, and carefully chosen typography.⚠ This demo page is a technical replicate of the original Tufte CSS page on Edward Tufte&amp;rsquo;s GitHub site. Information may not accurately reflect features of the hugo-tufte theme. Tufte CSS was created by Dave Liepmann and is now an Edward Tufte project.</description>
     </item>
     <item>
       <title>The big old test page</title>
-      <link>http://localhost:1313/posts/tufte-features/</link>
+      <link>https://saurav1004.github.io/posts/tufte-features/</link>
       <pubDate>Sun, 16 Apr 2023 16:03:45 +0100</pubDate>
-      <guid>http://localhost:1313/posts/tufte-features/</guid>
+      <guid>https://saurav1004.github.io/posts/tufte-features/</guid>
       <description>New features # Emoji # Powered by Noto Emoji font.disc&#xA;We really like cats. Yes, they are fluffy and happy. 🐈🐱&#xA;🪷🫶🤍😊💀🔥&#xA;Button # ✅ Open all notes ❎ Close all notes 🔄 Toggle all notes {{&amp;lt; button style=&amp;#34;primary&amp;#34; icon=&amp;#34;🔄&amp;#34; href=&amp;#34;javascript:javascript:(function(){function checkFrames(w) {try {var inputs = w.document.getElementsByTagName(&amp;#39;input&amp;#39;);for (var i=0; i &amp;lt; inputs.length; i++) {if (inputs[i].type &amp;amp;&amp;amp; inputs[i].type == &amp;#39;checkbox&amp;#39;){inputs[i].checked = !inputs[i].checked;}}} catch (e){}if(w.frames &amp;amp;&amp;amp; w.frames.length&amp;gt;0){for(var i=0;i&amp;lt;w .frames.length;i++){var fr=w.frames[i];checkFrames(fr);}}}checkFrames(window);})()&amp;#34; &amp;gt;}} Toggle all notes {{&amp;lt; /button &amp;gt;}} Cols (with lang option) # Certain things do not work with this shortcode layout, for example, Markdown&amp;rsquo;s default footnote (like [^1]).</description>
     </item>
   </channel>

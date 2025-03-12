@@ -6,9 +6,9 @@ subtitle: Fancy Subtitle
 meta: true
 math: true
 toc: true
-draft: true
-# hideDate: true
-# hideReadTime: true
+draft: false
+hideDate: true
+hideReadTime: true
 categories: [templates]
 description: "If the description field is not empty, its contents will show in the home page instead of the first 140 characters of the post."
 ---
