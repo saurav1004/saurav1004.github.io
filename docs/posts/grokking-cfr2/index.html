@@ -102,10 +102,10 @@ The Math Behind CFR
 Utility and Counterfactual Value
 <a href="#utility-and-counterfactual-value" class="heading-anchor">#</a>
 </h3>
-<p>Expected utility for player ( i ) under strategy ( \sigma ) is:</p>
-<p>$$ u_i(\sigma) = \sum_{z \in Z} u_i(z) \pi_{\sigma}(z), $$</p>
+<p>Expected utility for player <code>\( i \)</code> under strategy <code>\( \sigma \)</code> is:</p>
+<p><code>$$ u_i(\sigma) = \sum_{z \in Z} u_i(z) \pi_{\sigma}(z), $$</code></p>
 <p>where ( Z ) denotes terminal states. The counterfactual value at ( I ) assumes ( i ) plays to reach ( I ):</p>
-<p>$$ v_i(I, \sigma) = \sum_{h \in I} \sum_{z \in Z_h} u_i(z) \pi^{-i}<em>{\sigma}(h) \pi</em>{\sigma}(h, z). $$</p>
+<p><code>$$ v_i(I, \sigma) = \sum_{h \in I} \sum_{z \in Z_h} u_i(z) \pi^{-i}_{\sigma}(h) \pi_{\sigma}(h, z). $$</code></p>
 <p>For action ( a ):</p>
 <p><code>$$ v_i(I, a, \sigma) = \sum_{h \in I} \sum_{z \in Z_{h,a}} u_i(z) \pi^{-i}_{\sigma}(h) \pi_{\sigma}(h_a, z). $$</code></p>
 <h3 id="regret-and-updates">
@@ -113,9 +113,9 @@ Regret and Updates
 <a href="#regret-and-updates" class="heading-anchor">#</a>
 </h3>
 <p>Immediate regret for action ( a ) at iteration ( t ) is:</p>
-<p>$$ r_i(I, a, t) = v_i(I, a, \sigma_t) - v_i(I, \sigma_t), $$</p>
+<p><code>$$ r_i(I, a, t) = v_i(I, a, \sigma_t) - v_i(I, \sigma_t), $$</code></p>
 <p>with cumulative regret:</p>
-<p>$$ R_i^T(I, a) = \sum_{t=1}^T r_i(I, a, t). $$</p>
+<p><code>$$ R_i^T(I, a) = \sum_{t=1}^T r_i(I, a, t). $$</code></p>
 <p>CFR employs regret matching, defining positive regret:</p>
 <p><code>$$ R_i^{T,+}(I, a) = \max(R_i^T(I, a), 0), $$</code></p>
 <p>and updating the strategy.</p>
@@ -130,7 +130,7 @@ Convergence
 <a href="#convergence" class="heading-anchor">#</a>
 </h3>
 <p>The average strategy ( \bar{\sigma}<em>i(I, a) = \frac{1}{T} \sum</em>{t=1}^T \sigma_i^t(I, a) ) converges to a Nash equilibrium, with exploitability bounded by:</p>
-<p>$$ \frac{\max_{I} |A(I)| \cdot \Delta_u}{\sqrt{T}}, $$</p>
+<p><code>$$ \frac{\max_{I} |A(I)| \cdot \Delta_u}{\sqrt{T}}, $$</code></p>
 <p>where (\Delta_u) is the utility range. <label for="marginnote-1" class="margin-toggle marginnote-ind">⚠</label>
 <input type="checkbox" id="marginnote-1" class="margin-toggle"/>
 <span class="marginnote">

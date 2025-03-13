@@ -41,13 +41,13 @@ The "counterfactual" aspect evaluates unchosen actions, pondering: "What payoff 
 
 ### Utility and Counterfactual Value
 
-Expected utility for player \( i \) under strategy \( \sigma \) is:
+Expected utility for player `\( i \)` under strategy `\( \sigma \)` is:
 
-$$ u_i(\sigma) = \sum_{z \in Z} u_i(z) \pi_{\sigma}(z), $$
+`$$ u_i(\sigma) = \sum_{z \in Z} u_i(z) \pi_{\sigma}(z), $$`
 
 where \( Z \) denotes terminal states. The counterfactual value at \( I \) assumes \( i \) plays to reach \( I \):
 
-$$ v_i(I, \sigma) = \sum_{h \in I} \sum_{z \in Z_h} u_i(z) \pi^{-i}_{\sigma}(h) \pi_{\sigma}(h, z). $$
+`$$ v_i(I, \sigma) = \sum_{h \in I} \sum_{z \in Z_h} u_i(z) \pi^{-i}_{\sigma}(h) \pi_{\sigma}(h, z). $$`
 
 For action \( a \):
 
@@ -57,11 +57,11 @@ For action \( a \):
 
 Immediate regret for action \( a \) at iteration \( t \) is:
 
-$$ r_i(I, a, t) = v_i(I, a, \sigma_t) - v_i(I, \sigma_t), $$
+`$$ r_i(I, a, t) = v_i(I, a, \sigma_t) - v_i(I, \sigma_t), $$`
 
 with cumulative regret:
 
-$$ R_i^T(I, a) = \sum_{t=1}^T r_i(I, a, t). $$
+`$$ R_i^T(I, a) = \sum_{t=1}^T r_i(I, a, t). $$`
 
 CFR employs regret matching, defining positive regret:
 
@@ -80,7 +80,7 @@ and updating the strategy.
 
 The average strategy \( \bar{\sigma}_i(I, a) = \frac{1}{T} \sum_{t=1}^T \sigma_i^t(I, a) \) converges to a Nash equilibrium, with exploitability bounded by:
 
-$$ \frac{\max_{I} |A(I)| \cdot \Delta_u}{\sqrt{T}}, $$
+`$$ \frac{\max_{I} |A(I)| \cdot \Delta_u}{\sqrt{T}}, $$`
 
 where (\Delta_u) is the utility range. {{< marginnote ind="⚠" >}}Convergence is slower in larger games, prompting optimizations like CFR+.{{< /marginnote >}}
 
