@@ -92,11 +92,11 @@ The Math Behind CFR
  with key notation:</p>
 <ul>
 <li><strong>Game Tree</strong>: Represented as nodes (states), edges (actions), and leaves (payoffs), with chance nodes for events like card deals.</li>
-<li><strong>Information Set ( I )</strong>: For player ( i ), ( I \in \mathcal{I}_i ) groups states ( i ) cannot distinguish.</li>
-<li><strong>Actions ( A(I) )</strong>: Legal moves at ( I ).</li>
-<li><strong>Strategy ( \sigma_i(I, a) )</strong>: Probability of action ( a \in A(I) ), where ( \sum_{a \in A(I)} \sigma_i(I, a) = 1 ).</li>
-<li><strong>Reach Probability ( \pi_{\sigma}(h) )</strong>: Probability of reaching state ( h ) under strategy ( \sigma ).</li>
-<li><strong>Counterfactual Reach ( \pi^{-i}_{\sigma}(h) )</strong>: Reach probability excluding ( i )’s actions.</li>
+<li><strong>Information Set ( I )</strong>: For player <code>\( i \)</code>, <code>\( I \in \mathcal{I}_i \)</code> groups states <code>\( i \)</code> cannot distinguish.</li>
+<li><strong>Actions ( A(I) )</strong>: Legal moves at <code>\( I \)</code>.</li>
+<li><strong>Strategy ( \sigma_i(I, a) )</strong>: Probability of action <code>\( a \in A(I) \)</code>, where <code>\( \sum_{a \in A(I)} \sigma_i(I, a) = 1 \)</code>.</li>
+<li><strong>Reach Probability ( \pi_{\sigma}(h) )</strong>: Probability of reaching state <code>\( h \)</code> under strategy <code>\( \sigma \)</code>.</li>
+<li><strong>Counterfactual Reach ( \pi^{-i}_{\sigma}(h) )</strong>: Reach probability excluding <code>\( i \)</code>’s actions.</li>
 </ul>
 <h3 id="utility-and-counterfactual-value">
 Utility and Counterfactual Value
@@ -129,9 +129,9 @@ Regret and Updates
 Convergence
 <a href="#convergence" class="heading-anchor">#</a>
 </h3>
-<p>The average strategy ( \bar{\sigma}<em>i(I, a) = \frac{1}{T} \sum</em>{t=1}^T \sigma_i^t(I, a) ) converges to a Nash equilibrium, with exploitability bounded by:</p>
+<p>The average strategy <code>\( \bar{\sigma}_i(I, a) = \frac{1}{T} \sum_{t=1}^T \sigma_i^t(I, a) \)</code> converges to a Nash equilibrium, with exploitability bounded by:</p>
 <p><code>$$ \frac{\max_{I} |A(I)| \cdot \Delta_u}{\sqrt{T}}, $$</code></p>
-<p>where (\Delta_u) is the utility range. <label for="marginnote-1" class="margin-toggle marginnote-ind">⚠</label>
+<p>where <code>(\Delta_u)</code> is the utility range. <label for="marginnote-1" class="margin-toggle marginnote-ind">⚠</label>
 <input type="checkbox" id="marginnote-1" class="margin-toggle"/>
 <span class="marginnote">
 Convergence is slower in larger games, prompting optimizations like CFR+.

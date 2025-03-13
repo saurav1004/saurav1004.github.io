@@ -33,11 +33,11 @@ The "counterfactual" aspect evaluates unchosen actions, pondering: "What payoff 
 {{< newthought >}}Let’s formalize CFR{{< /newthought >}} with key notation:
 
 - **Game Tree**: Represented as nodes (states), edges (actions), and leaves (payoffs), with chance nodes for events like card deals.
-- **Information Set \( I \)**: For player \( i \), \( I \in \mathcal{I}_i \) groups states \( i \) cannot distinguish.
-- **Actions \( A(I) \)**: Legal moves at \( I \).
-- **Strategy \( \sigma_i(I, a) \)**: Probability of action \( a \in A(I) \), where \( \sum_{a \in A(I)} \sigma_i(I, a) = 1 \).
-- **Reach Probability \( \pi_{\sigma}(h) \)**: Probability of reaching state \( h \) under strategy \( \sigma \).
-- **Counterfactual Reach \( \pi^{-i}_{\sigma}(h) \)**: Reach probability excluding \( i \)’s actions.
+- **Information Set \( I \)**: For player `\( i \)`, `\( I \in \mathcal{I}_i \)` groups states `\( i \)` cannot distinguish.
+- **Actions \( A(I) \)**: Legal moves at `\( I \)`.
+- **Strategy \( \sigma_i(I, a) \)**: Probability of action `\( a \in A(I) \)`, where `\( \sum_{a \in A(I)} \sigma_i(I, a) = 1 \)`.
+- **Reach Probability \( \pi_{\sigma}(h) \)**: Probability of reaching state `\( h \)` under strategy `\( \sigma \)`.
+- **Counterfactual Reach \( \pi^{-i}_{\sigma}(h) \)**: Reach probability excluding `\( i \)`’s actions.
 
 ### Utility and Counterfactual Value
 
@@ -78,11 +78,11 @@ and updating the strategy.
 
 ### Convergence
 
-The average strategy \( \bar{\sigma}_i(I, a) = \frac{1}{T} \sum_{t=1}^T \sigma_i^t(I, a) \) converges to a Nash equilibrium, with exploitability bounded by:
+The average strategy `\( \bar{\sigma}_i(I, a) = \frac{1}{T} \sum_{t=1}^T \sigma_i^t(I, a) \)` converges to a Nash equilibrium, with exploitability bounded by:
 
 `$$ \frac{\max_{I} |A(I)| \cdot \Delta_u}{\sqrt{T}}, $$`
 
-where (\Delta_u) is the utility range. {{< marginnote ind="⚠" >}}Convergence is slower in larger games, prompting optimizations like CFR+.{{< /marginnote >}}
+where `(\Delta_u)` is the utility range. {{< marginnote ind="⚠" >}} Convergence is slower in larger games, prompting optimizations like CFR+.{{< /marginnote >}}
 
 ---
 
