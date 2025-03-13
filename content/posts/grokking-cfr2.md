@@ -33,11 +33,11 @@ The "counterfactual" aspect evaluates unchosen actions, pondering: "What payoff 
 {{< newthought >}}Let’s formalize CFR{{< /newthought >}} with key notation:
 
 - **Game Tree**: Represented as nodes (states), edges (actions), and leaves (payoffs), with chance nodes for events like card deals.
-- **Information Set \( I \)**: For player `\( i \)`, `\( I \in \mathcal{I}_i \)` groups states `\( i \)` cannot distinguish.
-- **Actions \( A(I) \)**: Legal moves at `\( I \)`.
-- **Strategy \( \sigma_i(I, a) \)**: Probability of action `\( a \in A(I) \)`, where `\( \sum_{a \in A(I)} \sigma_i(I, a) = 1 \)`.
-- **Reach Probability \( \pi_{\sigma}(h) \)**: Probability of reaching state `\( h \)` under strategy `\( \sigma \)`.
-- **Counterfactual Reach \( \pi^{-i}_{\sigma}(h) \)**: Reach probability excluding `\( i \)`’s actions.
+- **Information Set `\( I \)`**: For player `\( i \)`, `\( I \in \mathcal{I}_i \)` groups states `\( i \)` cannot distinguish.
+- **Actions `\( A(I) \)`**: Legal moves at `\( I \)`.
+- **Strategy `\( \sigma_i(I, a) \)`**: Probability of action `\( a \in A(I) \)`, where `\( \sum_{a \in A(I)} \sigma_i(I, a) = 1 \)`.
+- **Reach Probability `\( \pi_{\sigma}(h) \)`**: Probability of reaching state `\( h \)` under strategy `\( \sigma \)`.
+- **Counterfactual Reach `\( \pi^{-i}_{\sigma}(h) \)`**: Reach probability excluding `\( i \)`’s actions.
 
 ### Utility and Counterfactual Value
 
