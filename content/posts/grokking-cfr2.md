@@ -51,7 +51,7 @@ $$ v_i(I, \sigma) = \sum_{h \in I} \sum_{z \in Z_h} u_i(z) \pi^{-i}_{\sigma}(h) 
 
 For action \( a \):
 
-$$ v_i(I, a, \sigma) = \sum_{h \in I} \sum_{z \in Z_{h,a}} u_i(z) \pi^{-i}_{\sigma}(h) \pi_{\sigma}(h_a, z). $$
+`$$ v_i(I, a, \sigma) = \sum_{h \in I} \sum_{z \in Z_{h,a}} u_i(z) \pi^{-i}_{\sigma}(h) \pi_{\sigma}(h_a, z). $$`
 
 ### Regret and Updates
 
