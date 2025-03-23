@@ -1,12 +1,12 @@
 ---
-author: [Your Name]
+author: [Saurav]
 date: '2025-03-12T10:00:00+0000'
 title: Grokking Counterfactual Regret Minimization
-subtitle: A Deep Dive into Theory and Implementation
+subtitle: Theory
 meta: true
 math: true
 toc: false
-draft: false
+draft: true
 hideDate: false
 hideReadTime: true
 categories: [AI, Game Theory]
