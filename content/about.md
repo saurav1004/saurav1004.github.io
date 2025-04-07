@@ -5,15 +5,17 @@ subtitle: Show me a completely smooth operation and I'll show you someone who's 
 _build:
   list: never
 ---
+
 ## this blog 
-this is almost an engineering blog, as well as a curation of some other interesting stuff I spend time on. 
-I primarily write short essays and blog posts, often centered around topics I'm actively learning. Over time, these writings evolve into structured systems that shape and refine my thinking. 
+I’m no writer by trade; I write to make sense of my thoughts. This blog is a collection of my old and new notes made into short essays and writeups.
 
 ### Saurav Panigrahi
-Engineer / Realist <br />
+(meta)Engineer / Realist <br />
 
 You can reach out to me [@sauravlmx](https://x.com/sauravlmx). 
-I consider myself a hardcore realist to the point that I have come up with a **Realist's Manifesto**. If you are interested, follow along, Or feel free to check out my other posts.
+I consider myself a hardcore realist to the point that I have come up with a **Realist's Manifesto**. If you are interested, follow along, Or feel free to check out my other posts. 
+
+I also maintain a list of articles from the deepest corners of the internet because google search results are horse shit. Access it [here](https://narrowfoc.us/linklog). 
 
 **The Realist’s Manifesto:**
 
