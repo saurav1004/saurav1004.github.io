@@ -15,7 +15,6 @@ canonifyurls: false
 pagination:
   pagerSize: 5
 
-
 # Only modify the following if you know what you are doing
 markup:
   goldmark:
@@ -89,9 +88,13 @@ menu:
       identifier: posts
       url: /
     - name: About
-      weight: -80
+      weight: -90
       identifier: about
       url: /about/
+    - name: Linklog
+      weight: -80
+      identifier: linklog
+      url: /linklog/
 # -----------------------------------------------------------------------
 # FOOTER MENU
 # If you need to add custom links to you footer: put them here.
