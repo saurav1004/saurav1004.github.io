@@ -26,7 +26,7 @@ markup:
 
 params:
   # Subtitle of the website
-  subtitle: "meta-engineering blog"
+  subtitle: "meta-engineering blog - saurav"
   favicon: "./favicon.ico"
   touchicon: "./touch-icon.png"
   # Dark code highlighting
@@ -87,14 +87,20 @@ menu:
       weight: -100
       identifier: posts
       url: /
-    - name: About
-      weight: -90
-      identifier: about
-      url: /about/
     - name: Linklog
-      weight: -80
+      weight: -90
       identifier: linklog
       url: /linklog/
+    - name: Reading
+      weight: -85
+      identifier: reading
+      url: /reading/
+    - name: About
+      weight: -80
+      identifier: about
+      url: /about/
+    
+    
 # -----------------------------------------------------------------------
 # FOOTER MENU
 # If you need to add custom links to you footer: put them here.

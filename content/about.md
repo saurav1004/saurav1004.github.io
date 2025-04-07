@@ -6,8 +6,8 @@ _build:
   list: never
 ---
 
-## this blog 
-I’m no writer by trade; I write to make sense of my thoughts. This blog is a collection of my old and new notes made into short essays and writeups.
+### about this blog 
+I’m no writer by trade; I write to make sense of my thoughts. This blog is a collection of my old and new notes made into short essays and writeups. 
 
 ### Saurav Panigrahi
 (meta)Engineer / Realist <br />
@@ -15,7 +15,8 @@ I’m no writer by trade; I write to make sense of my thoughts. This blog is a c
 You can reach out to me [@sauravlmx](https://x.com/sauravlmx). 
 I consider myself a hardcore realist to the point that I have come up with a **Realist's Manifesto**. If you are interested, follow along, Or feel free to check out my other posts. 
 
-I also maintain a list of articles from the deepest corners of the internet because google search results are horse shit. Access it [here](https://narrowfoc.us/linklog). 
+I also maintain a list of articles, blogs, artifacts etc from the deepest corners of the internet because google search results are horse shit. 
+It also has a list of books I have partially read, or I want to read. (I haven't finished a book ever). Access the log [here](https://narrowfoc.us/linklog). 
 
 **The Realist’s Manifesto:**
 
