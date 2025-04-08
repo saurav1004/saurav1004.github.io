@@ -26,7 +26,7 @@ markup:
 
 params:
   # Subtitle of the website
-  subtitle: "meta-engineering blog - saurav"
+  subtitle: "- saurav"
   favicon: "./favicon.ico"
   touchicon: "./touch-icon.png"
   # Dark code highlighting
@@ -99,7 +99,10 @@ menu:
       weight: -80
       identifier: about
       url: /about/
-    
+    # - name: Culture
+    #   weight: -70
+    #   identifier: linklog
+    #   url: /linklog/
     
 # -----------------------------------------------------------------------
 # FOOTER MENU
