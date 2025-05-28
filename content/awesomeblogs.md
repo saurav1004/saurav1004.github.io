@@ -1,17 +1,14 @@
 ---
-title: "Awesome Blogs"
+title: "Writing for Engineers, by Engineers"
 hasMath: false
-subtitle: All models are wrong, but some are useful.
+subtitle: Engineering is a Performance Art. Quite Literaly.  
 _build:
   list: never
 ---
 
 You would find here a curated list of blogs that I love reading. This is in no way a complete list. 
-
 The list is made into two parts : Systems and Machine Learning. 
-
 ## Systems  
-
 Databases, Distributed Systems, Programming Languages, Compilers, Operating Systems etc. 
 
 [Brendan Gregg](https://www.brendangregg.com/blog) -- Deep dives into systems performance and observability.
@@ -49,9 +46,7 @@ Databases, Distributed Systems, Programming Languages, Compilers, Operating Syst
 [Tanel Poder](https://tanelpoder.com) -- Deep technical dives into database performance and internals. 
 
 [Varun Upadhyay](https://distributed-computing-musings.com) -- Deep technical dives into Distributed Computing concepts
-
 ## Machine Learning 
-
 Machine Learning, Deep Learning, Reinforcement Learning, LLMs, ML for Systems, Systems for ML etc. 
 
 [Chris Olah](https://colah.github.io/) -- Deep, visual explanations of neural networks and interpretability.
@@ -89,8 +84,10 @@ Machine Learning, Deep Learning, Reinforcement Learning, LLMs, ML for Systems, S
 [Chip Huyen](https://huyenchip.com/blog/) -- Essays on ML systems, production, and real-world deployment.
 
 [ICLR Blogs](https://iclr-blogposts.github.io/2025/blog/index.html) -- Accessible summaries and highlights from ICLR research.
-
+## Other lists 
 There are other awesome people who have curated such lists too, check them out : 
 - [Phil Eaton's List](https://eatonphil.com/blogs.html) 
 - [Sebastian Raschka's List](https://magazine.sebastianraschka.com/recommendations)
 - [this awesome repo](https://github.com/kilimchoi/engineering-blogs) 
+
+

@@ -1,14 +1,14 @@
 ---
 title: "Linklog"
 hasMath: false
-subtitle: All models are wrong, but some are useful.
+subtitle: there are more listicles than there are testicles on planet earth. this is yet another. 
 _build:
   list: never
 ---
 
-### [Blogs](/awesomeblogs)
+### [writings for engineers, by engineers](/awesomeblogs)
 
-### [Meta Research](/metaresearch)
+### [meta research](/metaresearch)
 
 
 
