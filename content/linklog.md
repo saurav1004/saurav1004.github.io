@@ -6,9 +6,9 @@ _build:
   list: never
 ---
 
-### [Blogs](www.narrowfoc.us/awesomeblogs)
+### [Blogs](/awesomeblogs)
 
-### [Meta Research](www.narrowfoc.us/metaresearch)
+### [Meta Research](/metaresearch)
 
 
 
