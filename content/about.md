@@ -38,4 +38,5 @@ There is also a reading list (of books and papers) I have partially read, or I w
 3. Realists face reality head-on. If a system fails, it hits hard, and they confront it.
 4. Realists are determined, not fanatical. If something isn’t working, they want to know and they want to fix it.
 5. Realists embrace the truth, however harsh. They adjust, adapt, and move forward.
-6. Realists prioritise results over ideals.
+6. Realists prioritise results over ideals. 
+7. Realists love chocolate ice cream.
