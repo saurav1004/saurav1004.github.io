@@ -15,7 +15,7 @@ I’m no writer by trade; I write to make sense of my thoughts. This blog is a c
 You can reach out to me [@sauravlmx](https://x.com/sauravlmx).
 I consider myself a hardcore realist to the point that I have come up with a **Realist's Manifesto**. If you are interested, follow along, Or feel free to check out my other posts. 
 
-I maintain a list of my favorite blogs. Access it [here](https://narrowfoc.us/linklog). 
+I maintain a list of my favorite blogs on systems, machine learning and meta engineering. Access it [here](https://narrowfoc.us/linklog). 
 
 There is also a reading list (of books and papers) I have partially read, or I want to read. (I haven't finished a book ever). Access the reading list [here](https://narrowfoc.us/reading). 
 
