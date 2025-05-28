@@ -6,15 +6,8 @@
     <description>Recent content in Home on narrowfocus</description>
     <generator>Hugo</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 12 Mar 2025 10:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 17 Apr 2023 16:03:45 +0100</lastBuildDate>
     <atom:link href="https://saurav1004.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Grokking Counterfactual Regret Minimization</title>
-      <link>https://saurav1004.github.io/posts/grokking-cfr2/</link>
-      <pubDate>Wed, 12 Mar 2025 10:00:00 +0000</pubDate>
-      <guid>https://saurav1004.github.io/posts/grokking-cfr2/</guid>
-      <description>Real life consists of bluffing, of little tactics of deception, of asking yourself what is the other man going to think I mean to do.&#xA;John von Neumann, Theory of Games and Economic Behavior Counterfactual Regret Minimization (CFR) is a cornerstone algorithm in artificial intelligence for solving imperfect-information games—scenarios like poker where players operate with incomplete knowledge. Pioneered by Martin Zinkevich et al. in 2007, CFR has propelled AI to superhuman levels in games such as Heads-Up No-Limit Texas Hold&amp;rsquo;em.</description>
-    </item>
     <item>
       <title>Tufte CSS</title>
       <link>https://saurav1004.github.io/posts/tufte-css/</link>
