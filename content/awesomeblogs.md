@@ -11,79 +11,78 @@ The list is made into two parts : Machine Learning and Systems.
 ## Machine Learning 
 Machine Learning, Deep Learning, Reinforcement Learning, LLMs, ML for Systems, Systems for ML etc. 
 
-[Chris Olah](https://colah.github.io/) -- Deep, visual explanations of neural networks and interpretability.
+[Chris Olah](https://colah.github.io/)
 
-[Andrej Karpathy](https://karpathy.ai/) -- Insightful posts and videos on deep learning, AI, and practical ML engineering.
+[Andrej Karpathy](https://karpathy.ai/)
 
-[Lilian Weng](https://lilianweng.github.io/lil-log/) -- In-depth, approachable explorations of modern ML topics.
+[Lilian Weng](https://lilianweng.github.io/lil-log/) 
 
-[Sebastian Ruder](https://ruder.io/) -- Excellent coverage of NLP, transfer learning, and research trends.
+[Sebastian Ruder](https://ruder.io/)
 
-[Sebastian Raschka](https://sebastianraschka.com/blog/) -- Practical guides and tutorials on machine learning and deep learning.
+[Sebastian Raschka](https://sebastianraschka.com/blog/) 
 
-[Nathan Lambert / Interconnects](https://www.interconnects.ai/) -- Thoughtful commentary on AI research and industry trends.
+[Nathan Lambert / Interconnects](https://www.interconnects.ai/) 
 
-[Explosion AI](https://explosion.ai/) -- Blog from the creators of spaCy, covering NLP and ML engineering.
+[Explosion AI](https://explosion.ai/) 
+[Jay Alammar](https://jalammar.github.io/)
 
-[Jay Alammar](https://jalammar.github.io/) -- Visual, intuitive explanations of ML and NLP concepts.
+[Language Models Newsletter](https://newsletter.languagemodels.co/)
 
-[Language Models Newsletter](https://newsletter.languagemodels.co/) -- Updates and insights on large language models.
+[Erik Bernhardsson](https://erikbern.com/) 
 
-[Erik Bernhardsson](https://erikbern.com/) -- Practical and theoretical posts on ML, data, and engineering.
+[Eugene Yan](https://eugeneyan.com/writing/aireadingclub/) 
 
-[Eugene Yan](https://eugeneyan.com/writing/aireadingclub/) -- Applied ML, data science, and curated reading lists.
+[Jeremy Jordan](https://www.jeremyjordan.me/distributed-training/) 
 
-[Jeremy Jordan](https://www.jeremyjordan.me/distributed-training/) -- Clear guides on distributed training and ML engineering.
+[Denny Britz](https://dennybritz.com/) 
 
-[Denny Britz](https://dennybritz.com/) -- Tutorials and experiments in deep learning and reinforcement learning.
+[Alex Smola](https://alex.smola.org/blog.html) 
 
-[Alex Smola](https://alex.smola.org/blog.html) -- Research and commentary from a leading ML academic.
+[Radek Osmulski](https://radekosmulski.com/) 
 
-[Radek Osmulski](https://radekosmulski.com/) -- Hands-on lessons and reflections on practical deep learning.
+[Daniel Bourke](https://www.mrdbourke.com/) 
 
-[Daniel Bourke](https://www.mrdbourke.com/) -- Beginner-friendly guides and resources for learning ML.
+[Chip Huyen](https://huyenchip.com/blog/) 
 
-[Chip Huyen](https://huyenchip.com/blog/) -- Essays on ML systems, production, and real-world deployment.
-
-[ICLR Blogs](https://iclr-blogposts.github.io/2025/blog/index.html) -- Research Paper Style blogs from ICLR's Blogpost track. 
+[ICLR Blogs](https://iclr-blogposts.github.io/2025/blog/index.html) 
 ## Systems  
 Databases, Distributed Systems, Programming Languages, Compilers, Operating Systems etc. 
 
-[Brendan Gregg](https://www.brendangregg.com/blog) -- Deep dives into systems performance and observability.
+[Brendan Gregg](https://www.brendangregg.com/blog) 
 
-[Justine Tunney](https://justine.lol) -- Unique perspectives on low-level programming and software history.
+[Justine Tunney](https://justine.lol) 
 
-[Dan Luu](https://danluu.com/) -- Insightful essays on engineering culture and technical tradeoffs.
+[Dan Luu](https://danluu.com/) 
 
-[Andreas Kling](https://awesomekling.github.io/) -- Chronicles the development of SerenityOS and software craftsmanship.
+[Andreas Kling](https://awesomekling.github.io/) 
 
-[Eli Bendersky](https://eli.thegreenplace.net/) -- Clear explanations of programming concepts and language internals.
+[Eli Bendersky](https://eli.thegreenplace.net/) 
 
-[Hillel Wayne](https://www.hillelwayne.com/) -- Thoughtful writing on formal methods and software engineering practices.
+[Hillel Wayne](https://www.hillelwayne.com/) 
 
-[Chris Siebenmann](https://utcc.utoronto.ca/~cks/space/blog/) -- Practical explorations of Unix systems and networking.
+[Chris Siebenmann](https://utcc.utoronto.ca/~cks/space/blog/) 
 
-[Murat Demirbas](https://muratbuffalo.blogspot.com/) -- Accessible research summaries on distributed systems.
+[Murat Demirbas](https://muratbuffalo.blogspot.com/) 
 
-[Jamie Brandon](https://scattered-thoughts.net/) -- Creative takes on programming language design and tooling.
+[Jamie Brandon](https://scattered-thoughts.net/) 
 
-[Rachel Kroll](https://rachelbythebay.com/w/) -- Entertaining stories from real-world operations and infrastructure.
+[Rachel Kroll](https://rachelbythebay.com/w/) 
 
-[Mark Callaghan](http://smalldatum.blogspot.com/) -- In-depth analysis of databases and storage engines.
+[Mark Callaghan](http://smalldatum.blogspot.com/) 
 
-[Phil Eaton](https://eatonphil.com/blog.html) -- Approachable posts on databases, storage, and distributed systems.
+[Phil Eaton](https://eatonphil.com/blog.html) 
 
-[Evan Jones](https://www.evanjones.ca/) -- Honest reflections on building reliable software systems. 
+[Evan Jones](https://www.evanjones.ca/) 
 
-[Justin Jaffray](https://buttondown.com/jaffray/archive/) -- Concise, practical notes on distributed systems and infrastructure.
+[Justin Jaffray](https://buttondown.com/jaffray/archive/) 
 
-[Abhinav Upadhyay](https://blog.codingconfessions.com) -- Practical notes and experiments in systems and programming. 
+[Abhinav Upadhyay](https://blog.codingconfessions.com) 
 
-[Alex Miller](https://transactional.blog) -- Thoughtful essays on databases, transactions, and distributed systems. 
+[Alex Miller](https://transactional.blog) 
 
-[Tanel Poder](https://tanelpoder.com) -- Deep technical dives into database performance and internals. 
+[Tanel Poder](https://tanelpoder.com)
 
-[Varun Upadhyay](https://distributed-computing-musings.com) -- Deep technical dives into Distributed Computing concepts
+[Varun Upadhyay](https://distributed-computing-musings.com) 
 ## Other lists 
 There are other awesome people who have curated such lists too, check them out : 
 - [Phil Eaton's List](https://eatonphil.com/blogs.html) 
