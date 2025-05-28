@@ -8,7 +8,7 @@ _build:
 
 ### [writings for engineers, by engineers](/awesomeblogs)
 
-### [meta research](/metaresearch)
+### [meta research](/metaresearch) (coming soon) 
 
 
 

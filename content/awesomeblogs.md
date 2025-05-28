@@ -83,11 +83,13 @@ Machine Learning, Deep Learning, Reinforcement Learning, LLMs, ML for Systems, S
 
 [Chip Huyen](https://huyenchip.com/blog/) -- Essays on ML systems, production, and real-world deployment.
 
-[ICLR Blogs](https://iclr-blogposts.github.io/2025/blog/index.html) -- Accessible summaries and highlights from ICLR research.
+[ICLR Blogs](https://iclr-blogposts.github.io/2025/blog/index.html) -- Research Paper Style blogs from ICLR's Blogpost track. 
 ## Other lists 
 There are other awesome people who have curated such lists too, check them out : 
 - [Phil Eaton's List](https://eatonphil.com/blogs.html) 
 - [Sebastian Raschka's List](https://magazine.sebastianraschka.com/recommendations)
+- [Eugene Yang's List](https://github.com/eugeneyan/applied-ml)
+- [Eugene Yang's Second list](https://applyingml.com)
 - [this awesome repo](https://github.com/kilimchoi/engineering-blogs) 
 
 
