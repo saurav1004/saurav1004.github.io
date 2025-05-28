@@ -6,89 +6,99 @@ _build:
   list: never
 ---
 You would find here a curated list of blogs that I love reading. This is in no way a complete list. 
+Occasionaly I come across a new blog and find a whole treasure trove when I check out their other writings. I will try my best to keep this list updated as I find new awesome people on the internet. 
 
-The list is made into two parts : Machine Learning and Systems. 
+The list is made into two parts : Machine Learning and Systems. They are in no particular order. 
 ## Machine Learning 
 Machine Learning, Deep Learning, Reinforcement Learning, LLMs, ML for Systems, Systems for ML etc. 
 
-[Chris Olah](https://colah.github.io/)
+- [Chris Olah](https://colah.github.io/)
 
-[Andrej Karpathy](https://karpathy.ai/)
+- [Andrej Karpathy](https://karpathy.ai/)
 
-[Lilian Weng](https://lilianweng.github.io/lil-log/) 
+- [Lilian Weng](https://lilianweng.github.io/lil-log/) 
 
-[Sebastian Ruder](https://ruder.io/)
+- [Sebastian Ruder](https://ruder.io/)
 
-[Sebastian Raschka](https://sebastianraschka.com/blog/) 
+- [Sebastian Raschka](https://sebastianraschka.com/blog/) 
 
-[Nathan Lambert / Interconnects](https://www.interconnects.ai/) 
+- [Nathan Lambert / Interconnects](https://www.interconnects.ai/) 
 
-[Explosion AI](https://explosion.ai/) 
-[Jay Alammar](https://jalammar.github.io/)
+- [Explosion AI](https://explosion.ai/) 
 
-[Language Models Newsletter](https://newsletter.languagemodels.co/)
+- [Jay Alammar](https://jalammar.github.io/)
 
-[Erik Bernhardsson](https://erikbern.com/) 
+- [Language Models Newsletter](https://newsletter.languagemodels.co/)
 
-[Eugene Yan](https://eugeneyan.com/writing/aireadingclub/) 
+- [Erik Bernhardsson](https://erikbern.com/) 
 
-[Jeremy Jordan](https://www.jeremyjordan.me/distributed-training/) 
+- [Eugene Yan](https://eugeneyan.com/writing/aireadingclub/) 
 
-[Denny Britz](https://dennybritz.com/) 
+- [Jeremy Jordan](https://www.jeremyjordan.me/distributed-training/) 
 
-[Alex Smola](https://alex.smola.org/blog.html) 
+- [Denny Britz](https://dennybritz.com/) 
 
-[Radek Osmulski](https://radekosmulski.com/) 
+- [Alex Smola](https://alex.smola.org/blog.html) 
 
-[Daniel Bourke](https://www.mrdbourke.com/) 
+- [Radek Osmulski](https://radekosmulski.com/) 
 
-[Chip Huyen](https://huyenchip.com/blog/) 
+- [Daniel Bourke](https://www.mrdbourke.com/) 
 
-[ICLR Blogs](https://iclr-blogposts.github.io/2025/blog/index.html) 
+- [Chip Huyen](https://huyenchip.com/blog/) 
+
+- [ICLR Blogs](https://iclr-blogposts.github.io/2025/blog/index.html) 
 ## Systems  
 Databases, Distributed Systems, Programming Languages, Compilers, Operating Systems etc. 
+- [Brendan Gregg](https://www.brendangregg.com/blog) 
 
-[Brendan Gregg](https://www.brendangregg.com/blog) 
+- [Julia Evans](https://jvns.ca)
 
-[Justine Tunney](https://justine.lol) 
+- [Justine Tunney](https://justine.lol) 
 
-[Dan Luu](https://danluu.com/) 
+- [Eli Bendersky](https://eli.thegreenplace.net/) 
 
-[Andreas Kling](https://awesomekling.github.io/) 
+- [Murat Demirbas](https://muratbuffalo.blogspot.com/) 
 
-[Eli Bendersky](https://eli.thegreenplace.net/) 
+- [Mark Callaghan](http://smalldatum.blogspot.com/) 
 
-[Hillel Wayne](https://www.hillelwayne.com/) 
+- [Phil Eaton](https://eatonphil.com/blog.html) 
 
-[Chris Siebenmann](https://utcc.utoronto.ca/~cks/space/blog/) 
+- [Martin Folwer](https://martinfowler.com)
 
-[Murat Demirbas](https://muratbuffalo.blogspot.com/) 
+- [Laurence Tratt](https://tratt.net/laurie/blog/archive.html)
 
-[Jamie Brandon](https://scattered-thoughts.net/) 
+- [Andreas Kling](https://awesomekling.github.io/) 
 
-[Rachel Kroll](https://rachelbythebay.com/w/) 
+- [Dan Luu](https://danluu.com/) 
 
-[Mark Callaghan](http://smalldatum.blogspot.com/) 
+- [Alex Miller](https://transactional.blog) 
 
-[Phil Eaton](https://eatonphil.com/blog.html) 
+- [Abhinav Upadhyay](https://blog.codingconfessions.com) 
 
-[Evan Jones](https://www.evanjones.ca/) 
+- [Hillel Wayne](https://www.hillelwayne.com/) 
 
-[Justin Jaffray](https://buttondown.com/jaffray/archive/) 
+- [Chris Siebenmann](https://utcc.utoronto.ca/~cks/space/blog/)
 
-[Abhinav Upadhyay](https://blog.codingconfessions.com) 
+- [Jamie Brandon](https://scattered-thoughts.net/) 
 
-[Alex Miller](https://transactional.blog) 
+- [Rachel Kroll](https://rachelbythebay.com/w/) 
 
-[Tanel Poder](https://tanelpoder.com)
+- [Tanel Poder](https://tanelpoder.com)
 
-[Varun Upadhyay](https://distributed-computing-musings.com) 
+- [Varun Upadhyay](https://distributed-computing-musings.com) 
+
+- [Evan Jones](https://www.evanjones.ca/) 
+
+- [Justin Jaffray](https://buttondown.com/jaffray/archive/)
+
+- [Kyle Kingsbury](https://aphyr.com/posts) and [Jepsen](https://jepsen.io/analyses) 
 ## Other lists 
 There are other awesome people who have curated such lists too, check them out : 
-- [Phil Eaton's List](https://eatonphil.com/blogs.html) 
 - [Sebastian Raschka's List](https://magazine.sebastianraschka.com/recommendations)
 - [Eugene Yang's List](https://github.com/eugeneyan/applied-ml)
 - [Eugene Yang's Second list](https://applyingml.com)
-- [this awesome repo](https://github.com/kilimchoi/engineering-blogs) 
-
+- [Julia Evan's List](https://jvns.ca/blogroll/)
+- [Phil Eaton's List](https://eatonphil.com/blogs.html) 
+- [this awesome repo](https://github.com/kilimchoi/engineering-blogs)
+- [writethat.blog](https://writethat.blog)
 
