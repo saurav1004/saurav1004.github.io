@@ -16,10 +16,9 @@ Machine Learning, Deep Learning, Reinforcement Learning, LLMs, ML for Systems, S
 - [Lilian Weng](https://lilianweng.github.io/lil-log/) 
 - [Sebastian Ruder](https://ruder.io/)
 - [Sebastian Raschka](https://sebastianraschka.com/blog/) 
-- [Nathan Lambert / Interconnects](https://www.interconnects.ai/) 
+- [Nathan Lambert](https://www.interconnects.ai/) 
 - [Explosion AI](https://explosion.ai/) 
-- [Jay Alammar](https://jalammar.github.io/)
-- [Language Models Newsletter](https://newsletter.languagemodels.co/)
+- [Jay Alammar](https://jalammar.github.io/) and [Language Models Newsletter](https://newsletter.languagemodels.co/)
 - [Erik Bernhardsson](https://erikbern.com/) 
 - [Eugene Yan](https://eugeneyan.com/writing/aireadingclub/) 
 - [Jeremy Jordan](https://www.jeremyjordan.me/distributed-training/) 
@@ -28,7 +27,8 @@ Machine Learning, Deep Learning, Reinforcement Learning, LLMs, ML for Systems, S
 - [Radek Osmulski](https://radekosmulski.com/) 
 - [Daniel Bourke](https://www.mrdbourke.com/) 
 - [Chip Huyen](https://huyenchip.com/blog/) 
-- [ICLR Blogs](https://iclr-blogposts.github.io/2025/blog/index.html) 
+- [ICLR Blogs](https://iclr-blogposts.github.io/2025/blog/index.html)
+- [Answer.ai]( https://www.answer.ai/posts)
 ## Systems  
 Databases, Distributed Systems, Programming Languages, Compilers, Operating Systems etc. 
 - [Brendan Gregg](https://www.brendangregg.com/blog) 
@@ -52,9 +52,10 @@ Databases, Distributed Systems, Programming Languages, Compilers, Operating Syst
 - [Varun Upadhyay](https://distributed-computing-musings.com) 
 - [Evan Jones](https://www.evanjones.ca/) 
 - [Justin Jaffray](https://buttondown.com/jaffray/archive/)
-- [Kyle Kingsbury](https://aphyr.com/posts) and [Jepsen](https://jepsen.io/analyses) 
+- [Kyle Kingsbury](https://aphyr.com/posts) and [Jepsen](https://jepsen.io/analyses)
+- [Werner Vogels](https://www.allthingsdistributed.com) 
 ## Other lists 
-There are other awesome people who have curated such lists too, check them out : 
+There are other awesome people who have curated such lists too, check them out.
 - [Sebastian Raschka's List](https://magazine.sebastianraschka.com/recommendations)
 - [Eugene Yang's List](https://github.com/eugeneyan/applied-ml)
 - [Eugene Yang's Second list](https://applyingml.com)
