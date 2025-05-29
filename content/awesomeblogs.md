@@ -28,7 +28,7 @@ Machine Learning, Deep Learning, Reinforcement Learning, LLMs, ML for Systems, S
 - [Daniel Bourke](https://www.mrdbourke.com/) 
 - [Chip Huyen](https://huyenchip.com/blog/) 
 - [ICLR Blogs](https://iclr-blogposts.github.io/2025/blog/index.html)
-- [Answer.ai]( https://www.answer.ai/posts)
+- [Answer.ai]( https://www.answer.ai/)
 ## Systems  
 Databases, Distributed Systems, Programming Languages, Compilers, Operating Systems etc. 
 - [Brendan Gregg](https://www.brendangregg.com/blog) 
