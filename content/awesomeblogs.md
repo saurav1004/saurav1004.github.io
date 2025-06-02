@@ -20,7 +20,7 @@ Machine Learning, Deep Learning, Reinforcement Learning, LLMs, ML for Systems, S
 - [Explosion AI](https://explosion.ai/) 
 - [Jay Alammar](https://jalammar.github.io/) and [Language Models Newsletter](https://newsletter.languagemodels.co/)
 - [Erik Bernhardsson](https://erikbern.com/) 
-- [Eugene Yan](https://eugeneyan.com/writing/aireadingclub/) 
+- [Eugene Yan](https://eugeneyan.com/writing) 
 - [Jeremy Jordan](https://www.jeremyjordan.me/distributed-training/) 
 - [Denny Britz](https://dennybritz.com/) 
 - [Alex Smola](https://alex.smola.org/blog.html) 
@@ -57,8 +57,8 @@ Databases, Distributed Systems, Programming Languages, Compilers, Operating Syst
 ## Other lists 
 There are other awesome people who have curated such lists too, check them out.
 - [Sebastian Raschka's List](https://magazine.sebastianraschka.com/recommendations)
-- [Eugene Yang's List](https://github.com/eugeneyan/applied-ml)
-- [Eugene Yang's Second list](https://applyingml.com)
+- [Eugene Yan's List](https://github.com/eugeneyan/applied-ml)
+- [Eugene Yan's Second list](https://applyingml.com)
 - [Julia Evan's List](https://jvns.ca/blogroll/)
 - [Phil Eaton's List](https://eatonphil.com/blogs.html) 
 - [this awesome repo](https://github.com/kilimchoi/engineering-blogs)
