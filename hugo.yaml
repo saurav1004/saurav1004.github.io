@@ -38,7 +38,7 @@ params:
   # copyright: Copyright 2023
   # copyrightHolder: Copyright Holder
   # Show the "Powered by Hugo-Tufte and Hugo."
-  showPoweredBy: true
+  showPoweredBy: false
   # Site wide kill switch for date in pages
   hidedate: false
   # Site wide kill switch for post summary on home page
