@@ -5,6 +5,7 @@ title: Log Sum Exp in Pytorch
 # subtitle: A CSS library for creating beautiful Tufte-inspired HTML documents.
 meta: true
 math: true
+hasMath: true
 toc: false
 draft: false
 hideDate: false
