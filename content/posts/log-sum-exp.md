@@ -77,10 +77,7 @@ with torch.no_grad():
     probabilities = torch.softmax(logits, dim=1)
 
 print("Logits:", logits)
-# Logits: tensor([[-0.1262,  0.1080, -0.1792]])
-
 print("Probabilities:", probabilities)
-# Probabilities: tensor([[0.3113, 0.3934, 0.2952]])
 ```
 
 The standalone `torch.softmax` function is also implemented to be numerically stable, so it's safe to call for prediction.

@@ -121,10 +121,7 @@ The Role of Softmax for Inference
 </span></span><span class="line"><span class="cl">    <span class="n">probabilities</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Logits:&#34;</span><span class="p">,</span> <span class="n">logits</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Logits: tensor([[-0.1262,  0.1080, -0.1792]])</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Probabilities:&#34;</span><span class="p">,</span> <span class="n">probabilities</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Probabilities: tensor([[0.3113, 0.3934, 0.2952]])</span>
 </span></span></code></pre></div><p>The standalone <code>torch.softmax</code> function is also implemented to be numerically stable, so it&rsquo;s safe to call for prediction.</p>
 <h3 id="summary">
 Summary
