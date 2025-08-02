@@ -23,6 +23,13 @@
       <description>New features # Emoji # Powered by Noto Emoji font.disc&#xA;We really like cats. Yes, they are fluffy and happy. 🐈🐱&#xA;🪷🫶🤍😊💀🔥&#xA;Button # ✅ Open all notes ❎ Close all notes 🔄 Toggle all notes {{&amp;lt; button style=&amp;#34;primary&amp;#34; icon=&amp;#34;🔄&amp;#34; href=&amp;#34;javascript:javascript:(function(){function checkFrames(w) {try {var inputs = w.document.getElementsByTagName(&amp;#39;input&amp;#39;);for (var i=0; i &amp;lt; inputs.length; i++) {if (inputs[i].type &amp;amp;&amp;amp; inputs[i].type == &amp;#39;checkbox&amp;#39;){inputs[i].checked = !inputs[i].checked;}}} catch (e){}if(w.frames &amp;amp;&amp;amp; w.frames.length&amp;gt;0){for(var i=0;i&amp;lt;w .frames.length;i++){var fr=w.frames[i];checkFrames(fr);}}}checkFrames(window);})()&amp;#34; &amp;gt;}} Toggle all notes {{&amp;lt; /button &amp;gt;}} Cols (with lang option) # Certain things do not work with this shortcode layout, for example, Markdown&amp;rsquo;s default footnote (like [^1]).</description>
     </item>
     <item>
+      <title>Log Sum Exp in Pytorch</title>
+      <link>https://saurav1004.github.io/posts/log-sum-exp/</link>
+      <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://saurav1004.github.io/posts/log-sum-exp/</guid>
+      <description>Why PyTorch Combines Softmax and Loss: A Look at Numerical Stability # When working with PyTorch for classification tasks, you&amp;rsquo;ll encounter a common pattern: your model outputs raw scores (called logits), and you feed these directly into a loss function like nn.CrossEntropyLoss without first converting them to probabilities.&#xA;This might seem counterintuitive. Why not take the logical step of applying the softmax function to get probabilities first? This article explores the question and explains the clever reason behind PyTorch&amp;rsquo;s design.</description>
+    </item>
+    <item>
       <title>The Realist’s Manifesto</title>
       <link>https://saurav1004.github.io/posts/realist/</link>
       <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>

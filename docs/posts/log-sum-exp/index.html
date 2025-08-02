@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en-US"><head>
+<title>Log Sum Exp in Pytorch - narrowfocus</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description"
+    content="math tricks for stability in Pytorch ">
+<link rel="canonical" href="https://saurav1004.github.io/posts/log-sum-exp/" />
+
+
+<link rel="icon" href="https://saurav1004.github.io/favicon.ico" />
+
+
+<link rel="apple-touch-icon" href="https://saurav1004.github.io/touch-icon.png" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style"
+      href="https://fonts.googleapis.com/css?family=Noto+Serif+SC|Noto+Emoji&display=swap" />
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Noto+Serif+SC|Noto+Emoji&display=swap"
+      media="print" onload="this.media='all'" />
+<noscript>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" />
+</noscript>
+
+
+
+<link rel="stylesheet" href="/css/hugo-tufte.min.css">
+
+
+
+<link rel="stylesheet" href="/css/hugo-tufte-options.min.css">
+
+<link rel="stylesheet" href="/css/hugo-tufte-override.css">
+
+</head>
+<body>
+
+
+  <section><nav class="menu">
+    <ul>
+    
+        <li><a href="/">Home</a></li>
+    
+        <li><a href="/">Posts</a></li>
+    
+        <li><a href="/linklog/">Linklog</a></li>
+    
+        <li><a href="/reading/">Reading</a></li>
+    
+        <li><a href="/about/">About</a></li>
+    
+    </ul>
+</nav>
+</section>
+  <article id="main">
+    <section>
+<h1 class="content-title">Log Sum Exp in Pytorch</h1><span class="content-meta"><p class="author">Saurav</p><p class="date">2022-04-11</p></span></section>
+
+    
+
+    <section><h3 id="why-pytorch-combines-softmax-and-loss-a-look-at-numerical-stability">
+Why PyTorch Combines Softmax and Loss: A Look at Numerical Stability
+<a href="#why-pytorch-combines-softmax-and-loss-a-look-at-numerical-stability" class="heading-anchor">#</a>
+</h3>
+<p>When working with PyTorch for classification tasks, you&rsquo;ll encounter a common pattern: your model outputs raw scores (called <strong>logits</strong>), and you feed these directly into a loss function like <code>nn.CrossEntropyLoss</code> without first converting them to probabilities.</p>
+<p>This might seem counterintuitive. Why not take the logical step of applying the softmax function to get probabilities first? This article explores the question and explains the clever reason behind PyTorch&rsquo;s design.</p>
+<hr>
+<h3 id="the-question-why-not-apply-softmax-before-calculating-loss">
+The Question: Why Not Apply Softmax Before Calculating Loss?
+<a href="#the-question-why-not-apply-softmax-before-calculating-loss" class="heading-anchor">#</a>
+</h3>
+<p>On the surface, a two-step process for calculating the loss for a classification model seems correct:</p>
+<ol>
+<li><strong>Get Probabilities:</strong> Take the model&rsquo;s raw logit scores, $z$, and apply the softmax function to convert them into a probability distribution. The formula for the probability of class $i$ is $p_i = \frac{e^{z_i}}{\sum_{j} e^{z_j}}$.</li>
+<li><strong>Calculate Loss:</strong> Use the Negative Log-Likelihood (NLL) to find the loss, which is the negative logarithm of the predicted probability for the correct class, $y$. The formula is $L = -\log(p_y)$.</li>
+</ol>
+<p>This approach is mathematically sound, but when implemented on a computer, it runs into significant problems related to numerical stability.</p>
+<hr>
+<h3 id="the-problem-numerical-instability">
+The Problem: Numerical Instability
+<a href="#the-problem-numerical-instability" class="heading-anchor">#</a>
+</h3>
+<p>The issue lies with the exponential function ($e^z$) inside the softmax formula. Computers can only represent numbers within a finite range, and the exponential function can easily produce numbers that fall outside this range.</p>
+<p><strong>Overflow Risk:</strong> If a logit is a large positive number (e.g., $z_i = 100$), its exponential, $e^{100}$, is an astronomically large number. This exceeds the maximum value a standard floating-point number can hold, leading to an <strong>overflow</strong>. The result becomes <code>infinity</code> or <code>NaN</code> (Not a Number), which breaks the entire training process as the gradients become undefined.</p>
+<p><strong>Underflow Risk:</strong> If a logit is a large negative number (e.g., $z_i = -1000$), its exponential, $e^{-1000}$, is a number infinitesimally close to zero. The computer may round this down to exactly <code>0.0</code>. When you then try to compute the loss, you are faced with calculating $-\log(0)$, which is <code>infinity</code>. Again, the loss explodes, and training fails.</p>
+<p>Because backpropagation relies on a well-defined loss value to compute gradients, these <code>infinity</code> or <code>NaN</code> results stop learning in its tracks.</p>
+<hr>
+<h3 id="the-solution-a-combined-stable-calculation">
+The Solution: A Combined, Stable Calculation
+<a href="#the-solution-a-combined-stable-calculation" class="heading-anchor">#</a>
+</h3>
+<p>To avoid these pitfalls, PyTorch&rsquo;s <code>nn.CrossEntropyLoss</code> combines the softmax and NLL calculations into a single, mathematically equivalent but far more stable operation.</p>
+<p>The derivation starts by substituting the softmax formula directly into the NLL loss function:
+$$L = -\log\left(\frac{e^{z_y}}{\sum_j e^{z_j}}\right)$$
+Using the logarithm property $\log(\frac{a}{b}) = \log(a) - \log(b)$, we can rewrite this as:
+$$L = -(\log(e^{z_y}) - \log(\sum_j e^{z_j}))$$
+Since $\log(e^{z_y}) = z_y$, this simplifies to:
+$$L = -z_y + \log\left(\sum_j e^{z_j}\right)$$
+This new expression still contains the term $\log(\sum_j e^{z_j})$, known as the <strong>Log-Sum-Exp (LSE)</strong> function, which could still overflow. This is where the final &ldquo;trick&rdquo; comes in. We can find the maximum logit value, $m = \max(z)$, and rewrite the LSE term without changing its value:
+$$L = -z_y + m + \log\left(\sum_j e^{z_j - m}\right)$$
+This final formula is the key. By subtracting the maximum logit $m$ from each logit $z_j$, the exponent $(z_j - m)$ is <strong>always less than or equal to zero</strong>. This prevents the exponential term from ever becoming a huge number, thus avoiding overflow. This stable calculation is what <code>nn.CrossEntropyLoss</code> performs under the hood.</p>
+<hr>
+<h3 id="the-role-of-softmax-for-inference">
+The Role of Softmax for Inference
+<a href="#the-role-of-softmax-for-inference" class="heading-anchor">#</a>
+</h3>
+<p>While this combined function is crucial for stable <strong>training</strong>, the softmax function is still necessary during <strong>inference</strong> (when making predictions). The goal of inference is to get an interpretable output. The raw logits from the model are just scores; they are not probabilities.</p>
+<p>To convert these scores into a probability distribution that sums to one, you must explicitly call <code>torch.softmax()</code> on the model&rsquo;s output.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># During training, we feed raw logits to the loss function</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># loss = nn.CrossEntropyLoss(logits, labels)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># During inference, we apply softmax to get probabilities</span>
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">probabilities</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Logits:&#34;</span><span class="p">,</span> <span class="n">logits</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Logits: tensor([[-0.1262,  0.1080, -0.1792]])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Probabilities:&#34;</span><span class="p">,</span> <span class="n">probabilities</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Probabilities: tensor([[0.3113, 0.3934, 0.2952]])</span>
+</span></span></code></pre></div><p>The standalone <code>torch.softmax</code> function is also implemented to be numerically stable, so it&rsquo;s safe to call for prediction.</p>
+<h3 id="summary">
+Summary
+<a href="#summary" class="heading-anchor">#</a>
+</h3>
+<ul>
+<li>Separating the softmax and NLL loss calculations can lead to numerical overflow or underflow during training, causing the loss to become <code>infinity</code> or <code>NaN</code>.</li>
+<li>PyTorch&rsquo;s <code>nn.CrossEntropyLoss</code> combines these two steps into a single, numerically stable operation using the <strong>Log-Sum-Exp trick</strong>.</li>
+<li>For this reason, you should always feed <strong>raw logits</strong> directly to the loss function during training.</li>
+<li>During <strong>inference</strong>, you should apply <code>torch.softmax()</code> to the logits to get a final, interpretable probability distribution.</li>
+</ul>
+</section>
+    <section><footer class="page-footer">
+<hr />
+
+<div class="previous-post" style="display:inline-block;">
+  
+  <a class="link-reverse" href="https://saurav1004.github.io/posts/realist/?ref=footer">« The Realist’s Manifesto</a>
+  
+</div>
+
+<div class="next-post", style="display:inline-block;float:right;">
+  
+  <a class="link-reverse" href="https://saurav1004.github.io/posts/tufte-features/?ref=footer">The big old test page »</a>
+  
+</div>
+
+<ul class="page-footer-menu">
+  
+  
+  <li><a href="https://twitter.com/sauravlmx">Twitter</a></li>
+  
+  
+  
+
+  
+  <li><a href="https://github.com/saurav1004">GitHub</a></li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+</ul>
+
+
+<p>
+  Style by Edward Tufte. CSS by Dave Liepmann, Powered by <a href="https://gohugo.io">Hugo</a> and the
+  <a href="https://github.com/loikein/hugo-tufte">Tufte theme</a>.
+</p>
+
+
+
+
+</footer>
+</section>
+    
+  </article>
+  
+
+
+
+
+
+
+  <script>(function(){var e,t,n,s=document.getElementsByTagName("code");for(n=0;n<s.length;){if(t=s[n],t.parentNode.tagName!=="PRE"&&t.childElementCount===0&&!t.classList.contains("nolatex")&&(e=t.textContent,/^\$[^$]/.test(e)&&/[^$]\$$/.test(e)&&(e=e.replace(/^\$/,"\\(").replace(/\$$/,"\\)"),t.textContent=e),/^\\\((.|\s)+\\\)$/.test(e)||/^\\\[(.|\s)+\\\]$/.test(e)||/^\$(.|\s)+\$$/.test(e)||/^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(e))){t.outerHTML=t.innerHTML;continue}n++}})()</script>
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="//cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="//cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            
+            
+            
+            
+            
+            
+            trust: (context) => ['\\htmlId', '\\href'].includes(context.command),
+            macros: {
+              "\\eqref": "\\href{###1}{(\\text{#1})}",
+              "\\ref": "\\href{###1}{\\text{#1}}",
+              "\\label": "\\htmlId{#1}{}"
+            }
+        });
+    });
+</script>
+
+
+
+</body>
+
+</html>
