@@ -6,7 +6,7 @@ title: Tufte CSS
 meta: true
 math: true
 toc: false
-draft: false
+draft: true
 hideDate: true
 hideReadTime: true
 categories: [templates]

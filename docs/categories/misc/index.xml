@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Misc on narrowfocus</title>
+    <link>https://saurav1004.github.io/categories/misc/</link>
+    <description>Recent content in Misc on narrowfocus</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Mon, 11 Apr 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://saurav1004.github.io/categories/misc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Realist’s Manifesto</title>
+      <link>https://saurav1004.github.io/posts/realist/</link>
+      <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://saurav1004.github.io/posts/realist/</guid>
+      <description>The Realist’s Manifesto:&#xA;Human beings are trapped in endless cycles of introspection. Realism breaks this cycle by driving people to take action and move forward. Realism values shorter feedback loops, leading to faster iterations and deeper understanding. It insists on a bias for action and the need for testability. Fail fast and learn. Actions are rooted in simple systems and first principles. Systems are built from basic, fundamental, measurable elements called the primitives.</description>
+    </item>
+  </channel>
+</rss>

@@ -10,13 +10,6 @@
     <atom:link href="https://saurav1004.github.io/categories/templates/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tufte CSS</title>
-      <link>https://saurav1004.github.io/posts/realist/</link>
-      <pubDate>Mon, 17 Apr 2023 16:03:45 +0100</pubDate>
-      <guid>https://saurav1004.github.io/posts/realist/</guid>
-      <description>Tufte CSS provides tools to style web articles using the ideas demonstrated by Edward Tufte’s books and handouts. Tufte’s style is known for its simplicity, extensive use of sidenotes, tight integration of graphics with text, and carefully chosen typography.⚠ This demo page is a technical replicate of the original Tufte CSS page on Edward Tufte&amp;rsquo;s GitHub site. Information may not accurately reflect features of the hugo-tufte theme. Tufte CSS was created by Dave Liepmann and is now an Edward Tufte project.</description>
-    </item>
-    <item>
-      <title>Tufte CSS</title>
       <link>https://saurav1004.github.io/posts/tufte-css/</link>
       <pubDate>Mon, 17 Apr 2023 16:03:45 +0100</pubDate>
       <guid>https://saurav1004.github.io/posts/tufte-css/</guid>

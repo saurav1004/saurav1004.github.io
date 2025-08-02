@@ -10,13 +10,6 @@
     <atom:link href="https://saurav1004.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tufte CSS</title>
-      <link>https://saurav1004.github.io/posts/realist/</link>
-      <pubDate>Mon, 17 Apr 2023 16:03:45 +0100</pubDate>
-      <guid>https://saurav1004.github.io/posts/realist/</guid>
-      <description>Tufte CSS provides tools to style web articles using the ideas demonstrated by Edward Tufte’s books and handouts. Tufte’s style is known for its simplicity, extensive use of sidenotes, tight integration of graphics with text, and carefully chosen typography.⚠ This demo page is a technical replicate of the original Tufte CSS page on Edward Tufte&amp;rsquo;s GitHub site. Information may not accurately reflect features of the hugo-tufte theme. Tufte CSS was created by Dave Liepmann and is now an Edward Tufte project.</description>
-    </item>
-    <item>
-      <title>Tufte CSS</title>
       <link>https://saurav1004.github.io/posts/tufte-css/</link>
       <pubDate>Mon, 17 Apr 2023 16:03:45 +0100</pubDate>
       <guid>https://saurav1004.github.io/posts/tufte-css/</guid>
@@ -28,6 +21,13 @@
       <pubDate>Sun, 16 Apr 2023 16:03:45 +0100</pubDate>
       <guid>https://saurav1004.github.io/posts/tufte-features/</guid>
       <description>New features # Emoji # Powered by Noto Emoji font.disc&#xA;We really like cats. Yes, they are fluffy and happy. 🐈🐱&#xA;🪷🫶🤍😊💀🔥&#xA;Button # ✅ Open all notes ❎ Close all notes 🔄 Toggle all notes {{&amp;lt; button style=&amp;#34;primary&amp;#34; icon=&amp;#34;🔄&amp;#34; href=&amp;#34;javascript:javascript:(function(){function checkFrames(w) {try {var inputs = w.document.getElementsByTagName(&amp;#39;input&amp;#39;);for (var i=0; i &amp;lt; inputs.length; i++) {if (inputs[i].type &amp;amp;&amp;amp; inputs[i].type == &amp;#39;checkbox&amp;#39;){inputs[i].checked = !inputs[i].checked;}}} catch (e){}if(w.frames &amp;amp;&amp;amp; w.frames.length&amp;gt;0){for(var i=0;i&amp;lt;w .frames.length;i++){var fr=w.frames[i];checkFrames(fr);}}}checkFrames(window);})()&amp;#34; &amp;gt;}} Toggle all notes {{&amp;lt; /button &amp;gt;}} Cols (with lang option) # Certain things do not work with this shortcode layout, for example, Markdown&amp;rsquo;s default footnote (like [^1]).</description>
+    </item>
+    <item>
+      <title>The Realist’s Manifesto</title>
+      <link>https://saurav1004.github.io/posts/realist/</link>
+      <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://saurav1004.github.io/posts/realist/</guid>
+      <description>The Realist’s Manifesto:&#xA;Human beings are trapped in endless cycles of introspection. Realism breaks this cycle by driving people to take action and move forward. Realism values shorter feedback loops, leading to faster iterations and deeper understanding. It insists on a bias for action and the need for testability. Fail fast and learn. Actions are rooted in simple systems and first principles. Systems are built from basic, fundamental, measurable elements called the primitives.</description>
     </item>
   </channel>
 </rss>
