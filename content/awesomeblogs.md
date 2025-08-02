@@ -44,7 +44,7 @@ Databases, Distributed Systems, Programming Languages, Compilers, Operating Syst
 - [Dan Luu](https://danluu.com/) 
 - [Alex Miller](https://transactional.blog) 
 - [Abhinav Upadhyay](https://blog.codingconfessions.com) 
-- [Hillel Wayne](https://www.hillelwayne.com/) 
+- [Hillel Wayne](https://www.hillelwayne.com/)  
 - [Chris Siebenmann](https://utcc.utoronto.ca/~cks/space/blog/)
 - [Jamie Brandon](https://scattered-thoughts.net/) 
 - [Rachel Kroll](https://rachelbythebay.com/w/) 
