@@ -27,7 +27,7 @@ This might seem counterintuitive. Why not take the logical step of applying the 
 On the surface, a two-step process for calculating the loss for a classification model seems correct:
 
 1.  **Get Probabilities:** Take the model's raw logit scores, $z$, and apply the softmax function to convert them into a probability distribution. The formula for the probability of class $i$ is $p_i = \frac{e^{z_i}}{\sum_{j} e^{z_j}}$.
-2.  **Calculate Loss:** Use the Negative Log-Likelihood (NLL) to find the loss, which is the negative logarithm of the predicted probability for the correct class, $y$. The formula is $$L = -\log(p_y)$$.
+2.  **Calculate Loss:** Use the Negative Log-Likelihood (NLL) to find the loss, which is the negative logarithm of the predicted probability for the correct class, $y$. The formula is \\(L = -\log(p_y)\\).
 
 This approach is mathematically sound, but when implemented on a computer, it runs into significant problems related to numerical stability.
 
