@@ -6,7 +6,7 @@ subtitle: Fancy Subtitle
 meta: true
 math: true
 toc: true
-draft: false
+draft: True
 hideDate: true
 hideReadTime: true
 categories: [templates]
