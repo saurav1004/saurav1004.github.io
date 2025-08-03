@@ -12,8 +12,8 @@ I’m no writer by trade; I write to make sense of my thoughts. This blog is a c
 ### Saurav Panigrahi
 (meta)Engineer / Researcher / Realist <br />
 
-You can reach out to me [@sauravlmx](https://x.com/sauravlmx).
-I consider myself a hardcore realist to the point that I have come up with a [**Realist's Manifesto**](content/posts/realist.md).
+You can reach out to me [**@sauravlmx**](https://x.com/sauravlmx).
+I consider myself a hardcore realist to the point that I have come up with a [**Realist's Manifesto**](https://narrowfoc.us/posts/realist).
 
 I maintain a list of my favorite blogs on systems, machine learning and meta engineering. Access it [here](https://narrowfoc.us/linklog). 
 
