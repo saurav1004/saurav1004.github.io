@@ -77,8 +77,8 @@ The Question: Why Not Apply Softmax Before Calculating Loss?
 </h3>
 <p>On the surface, a two-step process for calculating the loss for a classification model seems correct:</p>
 <ol>
-<li><strong>Get Probabilities:</strong> Take the model&rsquo;s raw logit scores, $\z$, and apply the softmax function to convert them into a probability distribution. The formula for the probability of class \(i\) is \(p_i = \frac{e^{z_i}}{\sum_{j} e^{z_j}}\).</li>
-<li><strong>Calculate Loss:</strong> Use the Negative Log-Likelihood (NLL) to find the loss, which is the negative logarithm of the predicted probability for the correct class, $\y$. The formula is \(L = -\log(p_y)\).</li>
+<li><strong>Get Probabilities:</strong> Take the model&rsquo;s raw logit scores, \(z\), and apply the softmax function to convert them into a probability distribution. The formula for the probability of class \(i\) is \(p_i = \frac{e^{z_i}}{\sum_{j} e^{z_j}}\).</li>
+<li><strong>Calculate Loss:</strong> Use the Negative Log-Likelihood (NLL) to find the loss, which is the negative logarithm of the predicted probability for the correct class, \(y\). The formula is \(L = -\log(p_y)\).</li>
 </ol>
 <p>This approach is mathematically sound, but when implemented on a computer, it runs into significant problems related to numerical stability.</p>
 <hr>
@@ -86,9 +86,9 @@ The Question: Why Not Apply Softmax Before Calculating Loss?
 The Problem: Numerical Instability
 <a href="#the-problem-numerical-instability" class="heading-anchor">#</a>
 </h3>
-<p>The issue lies with the exponential function ($e^z$) inside the softmax formula. Computers can only represent numbers within a finite range, and the exponential function can easily produce numbers that fall outside this range.</p>
-<p><strong>Overflow Risk:</strong> If a logit is a large positive number (e.g., $z_i = 100$), its exponential, $e^{100}$, is an astronomically large number. This exceeds the maximum value a standard floating-point number can hold, leading to an <strong>overflow</strong>. The result becomes <code>infinity</code> or <code>NaN</code> (Not a Number), which breaks the entire training process as the gradients become undefined.</p>
-<p><strong>Underflow Risk:</strong> If a logit is a large negative number (e.g., $z_i = -1000$), its exponential, $e^{-1000}$, is a number infinitesimally close to zero. The computer may round this down to exactly <code>0.0</code>. When you then try to compute the loss, you are faced with calculating $-\log(0)$, which is <code>infinity</code>. Again, the loss explodes, and training fails.</p>
+<p>The issue lies with the exponential function (\(e^z\)) inside the softmax formula. Computers can only represent numbers within a finite range, and the exponential function can easily produce numbers that fall outside this range.</p>
+<p><strong>Overflow Risk:</strong> If a logit is a large positive number (e.g., \(z_i = 100\)), its exponential, \(e^{100}\), is an astronomically large number. This exceeds the maximum value a standard floating-point number can hold, leading to an <strong>overflow</strong>. The result becomes <code>infinity</code> or <code>NaN</code> (Not a Number), which breaks the entire training process as the gradients become undefined.</p>
+<p><strong>Underflow Risk:</strong> If a logit is a large negative number (e.g., \(z_i = -1000\)), its exponential, \(e^{-1000}\), is a number infinitesimally close to zero. The computer may round this down to exactly <code>0.0</code>. When you then try to compute the loss, you are faced with calculating \(-\log(0)\), which is <code>infinity</code>. Again, the loss explodes, and training fails.</p>
 <p>Because backpropagation relies on a well-defined loss value to compute gradients, these <code>infinity</code> or <code>NaN</code> results stop learning in its tracks.</p>
 <hr>
 <h3 id="the-solution-a-combined-stable-calculation">
@@ -122,7 +122,8 @@ The Role of Softmax for Inference
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Logits:&#34;</span><span class="p">,</span> <span class="n">logits</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Probabilities:&#34;</span><span class="p">,</span> <span class="n">probabilities</span><span class="p">)</span>
-</span></span></code></pre></div><p>The standalone <code>torch.softmax</code> function is also implemented to be numerically stable, so it&rsquo;s safe to call for prediction.</p>
+</span></span></code></pre></div><p>Note : <code>no_grad</code> is an optimisation in Pytorch that allows users to let go of the gradients while inference to make it more memory efficient.</p>
+<p>The standalone <code>torch.softmax</code> function is also implemented to be numerically stable(with the same LogSumExp trick), so it&rsquo;s safe to call for prediction.</p>
 <h3 id="summary">
 Summary
 <a href="#summary" class="heading-anchor">#</a>
@@ -131,7 +132,7 @@ Summary
 <li>Separating the softmax and NLL loss calculations can lead to numerical overflow or underflow during training, causing the loss to become <code>infinity</code> or <code>NaN</code>.</li>
 <li>PyTorch&rsquo;s <code>nn.CrossEntropyLoss</code> combines these two steps into a single, numerically stable operation using the <strong>Log-Sum-Exp trick</strong>.</li>
 <li>For this reason, you should always feed <strong>raw logits</strong> directly to the loss function during training.</li>
-<li>During <strong>inference</strong>, you should apply <code>torch.softmax()</code> to the logits to get a final, interpretable probability distribution.</li>
+<li>During <strong>inference</strong>, you should apply <code>torch.softmax()</code> to the logits to get a final, interpretable probability distribution, which also applies the same same trick as LogSumExp.</li>
 </ul>
 </section>
     <section><footer class="page-footer">
