@@ -64,11 +64,7 @@
 
     
 
-    <section><h3 id="why-pytorch-combines-softmax-and-loss-a-look-at-numerical-stability">
-Why PyTorch Combines Softmax and Loss: A Look at Numerical Stability
-<a href="#why-pytorch-combines-softmax-and-loss-a-look-at-numerical-stability" class="heading-anchor">#</a>
-</h3>
-<p>When working with PyTorch for classification tasks, you&rsquo;ll encounter a common pattern: your model outputs raw scores (called <strong>logits</strong>), and you feed these directly into a loss function like <code>nn.CrossEntropyLoss</code> without first converting them to probabilities.</p>
+    <section><p>When working with PyTorch for classification tasks, you&rsquo;ll encounter a common pattern: your model outputs raw scores (called <strong>logits</strong>), and you feed these directly into a loss function like <code>nn.CrossEntropyLoss</code> without first converting them to probabilities.</p>
 <p>This might seem counterintuitive. Why not take the logical step of applying the softmax function to get probabilities first? This article explores the question and explains the clever reason behind PyTorch&rsquo;s design.</p>
 <hr>
 <h3 id="the-question-why-not-apply-softmax-before-calculating-loss">
