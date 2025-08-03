@@ -49,13 +49,13 @@ To avoid these pitfalls, PyTorch's `nn.CrossEntropyLoss` combines the softmax an
 
 The derivation starts by substituting the softmax formula directly into the NLL loss function:
 $$L = -\log\left(\frac{e^{z_y}}{\sum_j e^{z_j}}\right)$$
-Using the logarithm property $\log(\frac{a}{b}) = \log(a) - \log(b)$, we can rewrite this as:
+Using the logarithm property \\(\log(\frac{a}{b}) = \log(a) - \log(b)\\), we can rewrite this as:
 $$L = -(\log(e^{z_y}) - \log(\sum_j e^{z_j}))$$
-Since $\log(e^{z_y}) = z_y$, this simplifies to:
-$$L = -z_y + \log\left(\sum_j e^{z_j}\right)$$
-This new expression still contains the term $\log(\sum_j e^{z_j})$, known as the **Log-Sum-Exp (LSE)** function, which could still overflow. This is where the final "trick" comes in. We can find the maximum logit value, $m = \max(z)$, and rewrite the LSE term without changing its value:
+Since \\(\log(e^{z_y}) = z_y\\), this simplifies to:
+$$L = -z_y + \log(\sum_j e^{z_j})$$
+This new expression still contains the term $\log(\sum_j e^{z_j})$, known as the **Log-Sum-Exp (LSE)** function, which could still overflow. This is where the final "trick" comes in. We can find the maximum logit value, \\(m = \max(z)\\), and rewrite the LSE term without changing its value:
 $$L = -z_y + m + \log\left(\sum_j e^{z_j - m}\right)$$
-This final formula is the key. By subtracting the maximum logit $m$ from each logit $z_j$, the exponent $(z_j - m)$ is **always less than or equal to zero**. This prevents the exponential term from ever becoming a huge number, thus avoiding overflow. This stable calculation is what `nn.CrossEntropyLoss` performs under the hood.
+This final formula is the key. By subtracting the maximum logit $m$ from each logit \\(z_j\\), the exponent \\((z_j - m)\\) is **always less than or equal to zero**. This prevents the exponential term from ever becoming a huge number, thus avoiding overflow. This stable calculation is what `nn.CrossEntropyLoss` performs under the hood.
 
 ---
 
