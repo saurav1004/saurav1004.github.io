@@ -1,6 +1,6 @@
 ---
 author: Saurav
-date: '2023-06-18'
+date: '2023-07-02'
 title: Numerical Stability in Pytorch
 # subtitle: A CSS library for creating beautiful Tufte-inspired HTML documents.
 meta: true
