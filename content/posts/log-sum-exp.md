@@ -14,6 +14,8 @@ categories: [misc]
 description: "math tricks for stability in Pytorch"
 ---
 
+-- old post -- 
+
 When working with PyTorch for classification tasks, you'll encounter a common pattern: your model outputs raw scores (called **logits**), and you feed these directly into a loss function like `nn.CrossEntropyLoss` without first converting them to probabilities.
 
 This might seem counterintuitive. Why not take the logical step of applying the softmax function to get probabilities first? This article explores the question and explains the clever reason behind PyTorch's design.

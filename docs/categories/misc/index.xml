@@ -13,7 +13,7 @@
       <link>https://saurav1004.github.io/posts/log-sum-exp/</link>
       <pubDate>Sun, 18 Jun 2023 00:00:00 +0000</pubDate>
       <guid>https://saurav1004.github.io/posts/log-sum-exp/</guid>
-      <description>When working with PyTorch for classification tasks, you&amp;rsquo;ll encounter a common pattern: your model outputs raw scores (called logits), and you feed these directly into a loss function like nn.CrossEntropyLoss without first converting them to probabilities.&#xA;This might seem counterintuitive. Why not take the logical step of applying the softmax function to get probabilities first? This article explores the question and explains the clever reason behind PyTorch&amp;rsquo;s design.&#xA;The Question: Why Not Apply Softmax Before Calculating Loss?</description>
+      <description>&amp;ndash; old post &amp;ndash;&#xA;When working with PyTorch for classification tasks, you&amp;rsquo;ll encounter a common pattern: your model outputs raw scores (called logits), and you feed these directly into a loss function like nn.CrossEntropyLoss without first converting them to probabilities.&#xA;This might seem counterintuitive. Why not take the logical step of applying the softmax function to get probabilities first? This article explores the question and explains the clever reason behind PyTorch&amp;rsquo;s design.</description>
     </item>
     <item>
       <title>The Realist’s Manifesto</title>
