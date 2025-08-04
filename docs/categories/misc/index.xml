@@ -10,17 +10,17 @@
     <atom:link href="https://saurav1004.github.io/categories/misc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Log Sum Exp in Pytorch</title>
-      <link>https://saurav1004.github.io/posts/log-sum-exp-copy/</link>
-      <pubDate>Sun, 18 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>https://saurav1004.github.io/posts/log-sum-exp-copy/</guid>
-      <description>&amp;ndash; old post &amp;ndash;&#xA;Numerical Stability in Deep Learning: A Look at Loss Scaling and Gradient Clipping # The core of training a deep neural network is gradient-based optimization. We calculate how the model&amp;rsquo;s error changes with respect to each of its millions (or billions) of parameters and take a small step in the direction that reduces that error. While simple in theory, this process is fraught with numerical challenges. The gradients themselves, the very signals that guide learning, can become unruly.</description>
-    </item>
-    <item>
-      <title>Log Sum Exp in Pytorch</title>
       <link>https://saurav1004.github.io/posts/log-sum-exp/</link>
       <pubDate>Sun, 18 Jun 2023 00:00:00 +0000</pubDate>
       <guid>https://saurav1004.github.io/posts/log-sum-exp/</guid>
       <description>&amp;ndash; old post &amp;ndash;&#xA;When working with PyTorch for classification tasks, you&amp;rsquo;ll encounter a common pattern: your model outputs raw scores (called logits), and you feed these directly into a loss function like nn.CrossEntropyLoss without first converting them to probabilities.&#xA;This might seem counterintuitive. Why not take the logical step of applying the softmax function to get probabilities first? This article explores the question and explains the clever reason behind PyTorch&amp;rsquo;s design.</description>
+    </item>
+    <item>
+      <title>Numerical Stability in Pytorch</title>
+      <link>https://saurav1004.github.io/posts/numerical-stability/</link>
+      <pubDate>Sun, 18 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>https://saurav1004.github.io/posts/numerical-stability/</guid>
+      <description>&amp;ndash; old post &amp;ndash;&#xA;The core of training a deep neural network is gradient-based optimization. We calculate how the model&amp;rsquo;s error changes with respect to each of its millions (or billions) of parameters and take a small step in the direction that reduces that error. While simple in theory, this process is fraught with numerical challenges. The gradients themselves, the very signals that guide learning, can become unruly.&#xA;In this post, we will explore two fundamental techniques that every deep learning practitioner should understand, both designed to control the magnitude of gradients.</description>
     </item>
     <item>
       <title>The Realist’s Manifesto</title>

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en-US"><head>
-<title>Log Sum Exp in Pytorch - narrowfocus</title>
+<title>Numerical Stability in Pytorch - narrowfocus</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description"
     content="math tricks for stability in Pytorch ">
-<link rel="canonical" href="https://saurav1004.github.io/posts/log-sum-exp-copy/" />
+<link rel="canonical" href="https://saurav1004.github.io/posts/numerical-stability/" />
 
 
 <link rel="icon" href="https://saurav1004.github.io/favicon.ico" />
@@ -60,15 +60,11 @@
 </section>
   <article id="main">
     <section>
-<h1 class="content-title">Log Sum Exp in Pytorch</h1><span class="content-meta"><p class="author">Saurav</p><p class="date">2023-06-18</p></span></section>
+<h1 class="content-title">Numerical Stability in Pytorch</h1><span class="content-meta"><p class="author">Saurav</p><p class="date">2023-06-18</p></span></section>
 
     
 
     <section><p>&ndash; old post &ndash;</p>
-<h1 id="numerical-stability-in-deep-learning-a-look-at-loss-scaling-and-gradient-clipping">
-Numerical Stability in Deep Learning: A Look at Loss Scaling and Gradient Clipping
-<a href="#numerical-stability-in-deep-learning-a-look-at-loss-scaling-and-gradient-clipping" class="heading-anchor">#</a>
-</h1>
 <p>The core of training a deep neural network is gradient-based optimization. We calculate how the model&rsquo;s error changes with respect to each of its millions (or billions) of parameters and take a small step in the direction that reduces that error. While simple in theory, this process is fraught with numerical challenges. The gradients themselves, the very signals that guide learning, can become unruly.</p>
 <p>In this post, we will explore two fundamental techniques that every deep learning practitioner should understand, both designed to control the magnitude of gradients. First, we&rsquo;ll look at <strong>Loss Scaling</strong>, which rescues gradients that become too small. Second, we&rsquo;ll examine <strong>Gradient Clipping</strong>, which tames gradients that become too large. Together, they form a crucial part of the toolkit for stable and efficient model training.</p>
 <hr>
@@ -147,11 +143,13 @@ Conclusion
 
 <div class="previous-post" style="display:inline-block;">
   
-  <a class="link-reverse" href="https://saurav1004.github.io/posts/log-sum-exp/?ref=footer">« Log Sum Exp in Pytorch</a>
+  <a class="link-reverse" href="https://saurav1004.github.io/posts/tufte-css/?ref=footer">« Tufte CSS</a>
   
 </div>
 
 <div class="next-post", style="display:inline-block;float:right;">
+  
+  <a class="link-reverse" href="https://saurav1004.github.io/posts/log-sum-exp/?ref=footer">Log Sum Exp in Pytorch »</a>
   
 </div>
 

@@ -1,7 +1,7 @@
 ---
 author: Saurav
 date: '2023-06-18'
-title: Log Sum Exp in Pytorch 
+title: Numerical Stability in Pytorch
 # subtitle: A CSS library for creating beautiful Tufte-inspired HTML documents.
 meta: true
 math: true
@@ -15,8 +15,6 @@ description: "math tricks for stability in Pytorch"
 ---
 
 -- old post -- 
-
-# Numerical Stability in Deep Learning: A Look at Loss Scaling and Gradient Clipping
 
 The core of training a deep neural network is gradient-based optimization. We calculate how the model's error changes with respect to each of its millions (or billions) of parameters and take a small step in the direction that reduces that error. While simple in theory, this process is fraught with numerical challenges. The gradients themselves, the very signals that guide learning, can become unruly.
 
