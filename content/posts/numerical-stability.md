@@ -22,11 +22,11 @@ In this post, we will explore two fundamental techniques that every deep learnin
 
 ---
 
-### Part 1: Rescuing Small Gradients with Loss Scaling
+## Part 1: Rescuing Small Gradients with Loss Scaling
 
 Training large-scale models is a task of immense computational and memory cost. To make this feasible, deep learning frameworks have widely adopted **mixed-precision training**, which leverages lower-precision numerical formats to accelerate computation and reduce memory usage. However, this efficiency comes with a numerical stability challenge that requires a clever solution.
 
-#### The Challenge of Gradient Underflow
+### The Challenge of Gradient Underflow
 
 In standard training, most variables are stored as 32-bit floating-point numbers (`float32`). Mixed-precision training, by contrast, performs many operations using 16-bit floating-point numbers (`float16`), which halves memory usage and dramatically speeds up calculations on modern GPUs.
 
@@ -34,7 +34,7 @@ The critical trade-off is the reduced dynamic range of `float16`. In deep networ
 
 This phenomenon is known as **gradient underflow**. When a gradient is flushed to zero, the corresponding weights are not updated. The learning signal is lost, and model convergence can stall.
 
-#### The Elegant Solution: Loss Scaling
+### The Elegant Solution: Loss Scaling
 
 The solution is a numerically simple yet powerful technique called **loss scaling**. Before initiating the backward pass, we simply multiply the calculated loss value, \\(L\\), by a large scaling factor, \\(S\\).
 
@@ -54,11 +54,11 @@ Frameworks like PyTorch automate this with **dynamic loss scaling** (`torch.cuda
 
 ---
 
-### Part 2: Taming Large Gradients with Gradient Clipping
+## Part 2: Taming Large Gradients with Gradient Clipping
 
 On the opposite end of the spectrum from vanishing gradients is the problem of **exploding gradients**. This occurs when the gradient of the loss function grows excessively large, leading to unstable training.
 
-#### The Mathematical Reason for Exploding Gradients
+### The Mathematical Reason for Exploding Gradients
 
 The weight update rule at the heart of training is:
 
@@ -72,7 +72,7 @@ $$\frac{\partial L}{\partial W_l} = \frac{\partial L}{\partial a_n} \cdot \frac{
 
 If the norms of the Jacobian terms \\(\frac{\partial a_{k+1}}{\partial a_k}\\) are consistently greater than 1, their product can grow exponentially. The resulting gradient vector can have an enormous magnitude, causing an update so large that it catapults the weights into a poor region of the loss landscape or results in floating-point overflow (`NaN`). This is especially common in Recurrent Neural Networks (RNNs) due to the repeated application of the same weight matrix.
 
-#### The Solution: The Mathematics of Gradient Clipping
+### The Solution: The Mathematics of Gradient Clipping
 
 Gradient Clipping directly addresses this by imposing a ceiling on the magnitude of the gradient vector. It is applied *after* the gradients are calculated but *before* the optimizer updates the weights.
 
@@ -103,7 +103,7 @@ $$\theta_{new} = \theta_{old} - \eta \cdot \hat{g}$$
 
 This ensures that even if the original gradient was enormous, the update step is limited to a reasonable size, keeping the training process stable.
 
-### Conclusion
+## Conclusion
 
 While they address opposite problems, loss scaling and gradient clipping are two sides of the same coin: **gradient magnitude control**. Successful deep learning depends on keeping the gradient signal within a "Goldilocks zone"—not so small that it's lost to numerical precision (underflow), and not so large that it destabilizes the entire training process (overflow).
 

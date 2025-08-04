@@ -68,22 +68,22 @@
 <p>The core of training a deep neural network is gradient-based optimization. We calculate how the model&rsquo;s error changes with respect to each of its millions (or billions) of parameters and take a small step in the direction that reduces that error. While simple in theory, this process is fraught with numerical challenges. The gradients themselves, the very signals that guide learning, can become unruly.</p>
 <p>In this post, we will explore two fundamental techniques that every deep learning practitioner should understand, both designed to control the magnitude of gradients. First, we&rsquo;ll look at <strong>Loss Scaling</strong>, which rescues gradients that become too small. Second, we&rsquo;ll examine <strong>Gradient Clipping</strong>, which tames gradients that become too large. Together, they form a crucial part of the toolkit for stable and efficient model training.</p>
 <hr>
-<h3 id="part-1-rescuing-small-gradients-with-loss-scaling">
+<h2 id="part-1-rescuing-small-gradients-with-loss-scaling">
 Part 1: Rescuing Small Gradients with Loss Scaling
 <a href="#part-1-rescuing-small-gradients-with-loss-scaling" class="heading-anchor">#</a>
-</h3>
+</h2>
 <p>Training large-scale models is a task of immense computational and memory cost. To make this feasible, deep learning frameworks have widely adopted <strong>mixed-precision training</strong>, which leverages lower-precision numerical formats to accelerate computation and reduce memory usage. However, this efficiency comes with a numerical stability challenge that requires a clever solution.</p>
-<h4 id="the-challenge-of-gradient-underflow">
+<h3 id="the-challenge-of-gradient-underflow">
 The Challenge of Gradient Underflow
 <a href="#the-challenge-of-gradient-underflow" class="heading-anchor">#</a>
-</h4>
+</h3>
 <p>In standard training, most variables are stored as 32-bit floating-point numbers (<code>float32</code>). Mixed-precision training, by contrast, performs many operations using 16-bit floating-point numbers (<code>float16</code>), which halves memory usage and dramatically speeds up calculations on modern GPUs.</p>
 <p>The critical trade-off is the reduced dynamic range of <code>float16</code>. In deep networks, as gradients are propagated backward, their magnitudes can become exceedingly small. Consider a gradient with a magnitude of \(6 \times 10^{-8}\). While perfectly representable in <code>float32</code>, this value is smaller than the smallest positive number <code>float16</code> can represent (approx. \(6.1 \times 10^{-5}\)). When cast to <code>float16</code>, this gradient is rounded to zero.</p>
 <p>This phenomenon is known as <strong>gradient underflow</strong>. When a gradient is flushed to zero, the corresponding weights are not updated. The learning signal is lost, and model convergence can stall.</p>
-<h4 id="the-elegant-solution-loss-scaling">
+<h3 id="the-elegant-solution-loss-scaling">
 The Elegant Solution: Loss Scaling
 <a href="#the-elegant-solution-loss-scaling" class="heading-anchor">#</a>
-</h4>
+</h3>
 <p>The solution is a numerically simple yet powerful technique called <strong>loss scaling</strong>. Before initiating the backward pass, we simply multiply the calculated loss value, \(L\), by a large scaling factor, \(S\).</p>
 <p>$$L_{scaled} = L \cdot S$$</p>
 <p>By the chain rule, this scaling factor propagates through the entire backward pass. The gradient of the scaled loss with respect to any parameter \(w\) is therefore the original gradient, also scaled by \(S\):</p>
@@ -93,25 +93,25 @@ The Elegant Solution: Loss Scaling
 <p>$$\nabla_w L = \frac{\nabla_w L_{scaled}}{S}$$</p>
 <p>Frameworks like PyTorch automate this with <strong>dynamic loss scaling</strong> (<code>torch.cuda.amp.GradScaler</code>), which adjusts \(S\) during training—decreasing it if gradients overflow to infinity, and increasing it during stable periods to capture even smaller gradients.</p>
 <hr>
-<h3 id="part-2-taming-large-gradients-with-gradient-clipping">
+<h2 id="part-2-taming-large-gradients-with-gradient-clipping">
 Part 2: Taming Large Gradients with Gradient Clipping
 <a href="#part-2-taming-large-gradients-with-gradient-clipping" class="heading-anchor">#</a>
-</h3>
+</h2>
 <p>On the opposite end of the spectrum from vanishing gradients is the problem of <strong>exploding gradients</strong>. This occurs when the gradient of the loss function grows excessively large, leading to unstable training.</p>
-<h4 id="the-mathematical-reason-for-exploding-gradients">
+<h3 id="the-mathematical-reason-for-exploding-gradients">
 The Mathematical Reason for Exploding Gradients
 <a href="#the-mathematical-reason-for-exploding-gradients" class="heading-anchor">#</a>
-</h4>
+</h3>
 <p>The weight update rule at the heart of training is:</p>
 <p>$$\theta_{new} = \theta_{old} - \eta \cdot \nabla_{\theta}L$$</p>
 <p>Here, \(\eta\) is the learning rate and \(\nabla_{\theta}L\) is the gradient. The problem of exploding gradients occurs when the norm of the gradient, \(||\nabla_{\theta}L||\), becomes excessively large.</p>
 <p>By the chain rule, the gradient in an early layer is a product of many Jacobian matrices from all subsequent layers. For a loss \(L\) and the weights \(W_l\) of layer \(l\), the gradient is computed backwards from the last layer (\(n\)):</p>
 <p>$$\frac{\partial L}{\partial W_l} = \frac{\partial L}{\partial a_n} \cdot \frac{\partial a_n}{\partial a_{n-1}} \cdot \frac{\partial a_{n-1}}{\partial a_{n-2}} \cdots \frac{\partial a_{l+1}}{\partial a_l} \cdot \frac{\partial a_l}{\partial W_l}$$</p>
 <p>If the norms of the Jacobian terms \(\frac{\partial a_{k+1}}{\partial a_k}\) are consistently greater than 1, their product can grow exponentially. The resulting gradient vector can have an enormous magnitude, causing an update so large that it catapults the weights into a poor region of the loss landscape or results in floating-point overflow (<code>NaN</code>). This is especially common in Recurrent Neural Networks (RNNs) due to the repeated application of the same weight matrix.</p>
-<h4 id="the-solution-the-mathematics-of-gradient-clipping">
+<h3 id="the-solution-the-mathematics-of-gradient-clipping">
 The Solution: The Mathematics of Gradient Clipping
 <a href="#the-solution-the-mathematics-of-gradient-clipping" class="heading-anchor">#</a>
-</h4>
+</h3>
 <p>Gradient Clipping directly addresses this by imposing a ceiling on the magnitude of the gradient vector. It is applied <em>after</em> the gradients are calculated but <em>before</em> the optimizer updates the weights.</p>
 <p><strong>Step 1: Define the Global Gradient Vector</strong>
 First, we aggregate the gradients for all trainable parameters ($\theta$) of the model into a single, large vector, which we&rsquo;ll call \(g\).</p>
@@ -131,10 +131,10 @@ We define a hyperparameter, a scalar value called <code>max_norm</code>, which i
 Finally, the optimizer uses this potentially rescaled gradient \(\hat{g}\) to perform the weight update:</p>
 <p>$$\theta_{new} = \theta_{old} - \eta \cdot \hat{g}$$</p>
 <p>This ensures that even if the original gradient was enormous, the update step is limited to a reasonable size, keeping the training process stable.</p>
-<h3 id="conclusion">
+<h2 id="conclusion">
 Conclusion
 <a href="#conclusion" class="heading-anchor">#</a>
-</h3>
+</h2>
 <p>While they address opposite problems, loss scaling and gradient clipping are two sides of the same coin: <strong>gradient magnitude control</strong>. Successful deep learning depends on keeping the gradient signal within a &ldquo;Goldilocks zone&rdquo;—not so small that it&rsquo;s lost to numerical precision (underflow), and not so large that it destabilizes the entire training process (overflow).</p>
 <p>Loss scaling pushes gradients up from the floor of <code>float16</code> representation, while gradient clipping pulls them down from the ceiling of numerical instability. They are simple, effective, and indispensable tools for training robust and powerful deep learning models.</p>
 </section>
