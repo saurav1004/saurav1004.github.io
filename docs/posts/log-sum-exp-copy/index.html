@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en-US"><head>
+<title>Log Sum Exp in Pytorch - narrowfocus</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description"
+    content="math tricks for stability in Pytorch ">
+<link rel="canonical" href="https://saurav1004.github.io/posts/log-sum-exp-copy/" />
+
+
+<link rel="icon" href="https://saurav1004.github.io/favicon.ico" />
+
+
+<link rel="apple-touch-icon" href="https://saurav1004.github.io/touch-icon.png" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style"
+      href="https://fonts.googleapis.com/css?family=Noto+Serif+SC|Noto+Emoji&display=swap" />
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Noto+Serif+SC|Noto+Emoji&display=swap"
+      media="print" onload="this.media='all'" />
+<noscript>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" />
+</noscript>
+
+
+
+<link rel="stylesheet" href="/css/hugo-tufte.min.css">
+
+
+
+<link rel="stylesheet" href="/css/hugo-tufte-options.min.css">
+
+<link rel="stylesheet" href="/css/hugo-tufte-override.css">
+
+</head>
+<body>
+
+
+  <section><nav class="menu">
+    <ul>
+    
+        <li><a href="/">Home</a></li>
+    
+        <li><a href="/">Posts</a></li>
+    
+        <li><a href="/linklog/">Linklog</a></li>
+    
+        <li><a href="/reading/">Reading</a></li>
+    
+        <li><a href="/about/">About</a></li>
+    
+    </ul>
+</nav>
+</section>
+  <article id="main">
+    <section>
+<h1 class="content-title">Log Sum Exp in Pytorch</h1><span class="content-meta"><p class="author">Saurav</p><p class="date">2023-06-18</p></span></section>
+
+    
+
+    <section><p>&ndash; old post &ndash;</p>
+<h1 id="numerical-stability-in-deep-learning-a-look-at-loss-scaling-and-gradient-clipping">
+Numerical Stability in Deep Learning: A Look at Loss Scaling and Gradient Clipping
+<a href="#numerical-stability-in-deep-learning-a-look-at-loss-scaling-and-gradient-clipping" class="heading-anchor">#</a>
+</h1>
+<p>The core of training a deep neural network is gradient-based optimization. We calculate how the model&rsquo;s error changes with respect to each of its millions (or billions) of parameters and take a small step in the direction that reduces that error. While simple in theory, this process is fraught with numerical challenges. The gradients themselves, the very signals that guide learning, can become unruly.</p>
+<p>In this post, we will explore two fundamental techniques that every deep learning practitioner should understand, both designed to control the magnitude of gradients. First, we&rsquo;ll look at <strong>Loss Scaling</strong>, which rescues gradients that become too small. Second, we&rsquo;ll examine <strong>Gradient Clipping</strong>, which tames gradients that become too large. Together, they form a crucial part of the toolkit for stable and efficient model training.</p>
+<hr>
+<h3 id="part-1-rescuing-small-gradients-with-loss-scaling">
+Part 1: Rescuing Small Gradients with Loss Scaling
+<a href="#part-1-rescuing-small-gradients-with-loss-scaling" class="heading-anchor">#</a>
+</h3>
+<p>Training large-scale models is a task of immense computational and memory cost. To make this feasible, deep learning frameworks have widely adopted <strong>mixed-precision training</strong>, which leverages lower-precision numerical formats to accelerate computation and reduce memory usage. However, this efficiency comes with a numerical stability challenge that requires a clever solution.</p>
+<h4 id="the-challenge-of-gradient-underflow">
+The Challenge of Gradient Underflow
+<a href="#the-challenge-of-gradient-underflow" class="heading-anchor">#</a>
+</h4>
+<p>In standard training, most variables are stored as 32-bit floating-point numbers (<code>float32</code>). Mixed-precision training, by contrast, performs many operations using 16-bit floating-point numbers (<code>float16</code>), which halves memory usage and dramatically speeds up calculations on modern GPUs.</p>
+<p>The critical trade-off is the reduced dynamic range of <code>float16</code>. In deep networks, as gradients are propagated backward, their magnitudes can become exceedingly small. Consider a gradient with a magnitude of $6 \times 10^{-8}$. While perfectly representable in <code>float32</code>, this value is smaller than the smallest positive number <code>float16</code> can represent (approx. $6.1 \times 10^{-5}$). When cast to <code>float16</code>, this gradient is rounded to zero.</p>
+<p>This phenomenon is known as <strong>gradient underflow</strong>. When a gradient is flushed to zero, the corresponding weights are not updated. The learning signal is lost, and model convergence can stall.</p>
+<h4 id="the-elegant-solution-loss-scaling">
+The Elegant Solution: Loss Scaling
+<a href="#the-elegant-solution-loss-scaling" class="heading-anchor">#</a>
+</h4>
+<p>The solution is a numerically simple yet powerful technique called <strong>loss scaling</strong>. Before initiating the backward pass, we simply multiply the calculated loss value, $L$, by a large scaling factor, $S$.</p>
+<p>$$L_{scaled} = L \cdot S$$</p>
+<p>By the chain rule, this scaling factor propagates through the entire backward pass. The gradient of the scaled loss with respect to any parameter $w$ is therefore the original gradient, also scaled by $S$:</p>
+<p>$$\frac{\partial L_{scaled}}{\partial w} = \frac{\partial (L \cdot S)}{\partial w} = S \cdot \frac{\partial L}{\partial w}$$</p>
+<p>This multiplication shifts the gradient values upwards. Our tiny gradient of $6 \times 10^{-8}$, when scaled by $S=32768$, becomes approximately $1.97 \times 10^{-3}$, which is well within the <code>float16</code> range.</p>
+<p>Before the optimizer updates the weights, the scaled gradients are unscaled by dividing by $S$, restoring their original values, now free from underflow.</p>
+<p>$$\nabla_w L = \frac{\nabla_w L_{scaled}}{S}$$</p>
+<p>Frameworks like PyTorch automate this with <strong>dynamic loss scaling</strong> (<code>torch.cuda.amp.GradScaler</code>), which adjusts $S$ during training—decreasing it if gradients overflow to infinity, and increasing it during stable periods to capture even smaller gradients.</p>
+<hr>
+<h3 id="part-2-taming-large-gradients-with-gradient-clipping">
+Part 2: Taming Large Gradients with Gradient Clipping
+<a href="#part-2-taming-large-gradients-with-gradient-clipping" class="heading-anchor">#</a>
+</h3>
+<p>On the opposite end of the spectrum from vanishing gradients is the problem of <strong>exploding gradients</strong>. This occurs when the gradient of the loss function grows excessively large, leading to unstable training.</p>
+<h4 id="the-mathematical-reason-for-exploding-gradients">
+The Mathematical Reason for Exploding Gradients
+<a href="#the-mathematical-reason-for-exploding-gradients" class="heading-anchor">#</a>
+</h4>
+<p>The weight update rule at the heart of training is:</p>
+<p>$$\theta_{new} = \theta_{old} - \eta \cdot \nabla_{\theta}L$$</p>
+<p>Here, $\eta$ is the learning rate and $\nabla_{\theta}L$ is the gradient. The problem of exploding gradients occurs when the norm of the gradient, $||\nabla_{\theta}L||$, becomes excessively large.</p>
+<p>By the chain rule, the gradient in an early layer is a product of many Jacobian matrices from all subsequent layers. For a loss $L$ and the weights $W_l$ of layer $l$, the gradient is computed backwards from the last layer ($n$):</p>
+<p>$$\frac{\partial L}{\partial W_l} = \frac{\partial L}{\partial a_n} \cdot \frac{\partial a_n}{\partial a_{n-1}} \cdot \frac{\partial a_{n-1}}{\partial a_{n-2}} \cdots \frac{\partial a_{l+1}}{\partial a_l} \cdot \frac{\partial a_l}{\partial W_l}$$</p>
+<p>If the norms of the Jacobian terms $\frac{\partial a_{k+1}}{\partial a_k}$ are consistently greater than 1, their product can grow exponentially. The resulting gradient vector can have an enormous magnitude, causing an update so large that it catapults the weights into a poor region of the loss landscape or results in floating-point overflow (<code>NaN</code>). This is especially common in Recurrent Neural Networks (RNNs) due to the repeated application of the same weight matrix.</p>
+<h4 id="the-solution-the-mathematics-of-gradient-clipping">
+The Solution: The Mathematics of Gradient Clipping
+<a href="#the-solution-the-mathematics-of-gradient-clipping" class="heading-anchor">#</a>
+</h4>
+<p>Gradient Clipping directly addresses this by imposing a ceiling on the magnitude of the gradient vector. It is applied <em>after</em> the gradients are calculated but <em>before</em> the optimizer updates the weights.</p>
+<p><strong>Step 1: Define the Global Gradient Vector</strong>
+First, we aggregate the gradients for all trainable parameters ($\theta$) of the model into a single, large vector, which we&rsquo;ll call $g$.</p>
+<p>$$g = \nabla_{\theta}L$$</p>
+<p><strong>Step 2: Compute the Norm of the Gradient Vector</strong>
+Next, we compute the L2 norm (Euclidean norm) of this vector $g$. The norm is a scalar value representing the overall magnitude or &ldquo;length&rdquo; of the gradient vector.</p>
+<p>$$||g||_2 = \sqrt{g_1^2 + g_2^2 + \dots + g_N^2}$$</p>
+<p><strong>Step 3: The Clipping Logic</strong>
+We define a hyperparameter, a scalar value called <code>max_norm</code>, which is the maximum permissible norm for our gradient vector. We then apply the following condition:</p>
+<ul>
+<li>If $||g||_2 \le \text{max_norm}$, the gradient&rsquo;s magnitude is acceptable, and we do nothing.</li>
+<li>If $||g||_2 &gt; \text{max_norm}$, the gradient has &ldquo;exploded,&rdquo; and we must rescale it. The clipped gradient, $\hat{g}$, is calculated as follows:</li>
+</ul>
+<p>$$\hat{g} = \left( \frac{\text{max_norm}}{||g||_2} \right) \cdot g$$</p>
+<p>Since we are in the case where $||g||_2 &gt; \text{max_norm}$, the scalar term in the parenthesis is less than 1. Multiplying the original gradient vector $g$ by this scalar shrinks its length without changing its direction. The new, rescaled gradient vector $\hat{g}$ will have a norm exactly equal to <code>max_norm</code>.</p>
+<p><strong>Step 4: Update the Weights with the Clipped Gradient</strong>
+Finally, the optimizer uses this potentially rescaled gradient $\hat{g}$ to perform the weight update:</p>
+<p>$$\theta_{new} = \theta_{old} - \eta \cdot \hat{g}$$</p>
+<p>This ensures that even if the original gradient was enormous, the update step is limited to a reasonable size, keeping the training process stable.</p>
+<h3 id="conclusion">
+Conclusion
+<a href="#conclusion" class="heading-anchor">#</a>
+</h3>
+<p>While they address opposite problems, loss scaling and gradient clipping are two sides of the same coin: <strong>gradient magnitude control</strong>. Successful deep learning depends on keeping the gradient signal within a &ldquo;Goldilocks zone&rdquo;—not so small that it&rsquo;s lost to numerical precision (underflow), and not so large that it destabilizes the entire training process (overflow).</p>
+<p>Loss scaling pushes gradients up from the floor of <code>float16</code> representation, while gradient clipping pulls them down from the ceiling of numerical instability. They are simple, effective, and indispensable tools for training robust and powerful deep learning models.</p>
+</section>
+    <section><footer class="page-footer">
+<hr />
+
+<div class="previous-post" style="display:inline-block;">
+  
+  <a class="link-reverse" href="https://saurav1004.github.io/posts/log-sum-exp/?ref=footer">« Log Sum Exp in Pytorch</a>
+  
+</div>
+
+<div class="next-post", style="display:inline-block;float:right;">
+  
+</div>
+
+<ul class="page-footer-menu">
+  
+  
+  <li><a href="https://twitter.com/sauravlmx">Twitter</a></li>
+  
+  
+  
+
+  
+  <li><a href="https://github.com/saurav1004">GitHub</a></li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+</ul>
+
+
+<p>
+  Style by Edward Tufte. CSS by Dave Liepmann, Powered by <a href="https://gohugo.io">Hugo</a> and the
+  <a href="https://github.com/loikein/hugo-tufte">Tufte theme</a>.
+</p>
+
+
+
+
+</footer>
+</section>
+    
+  </article>
+  
+
+
+
+
+
+
+  <script>(function(){var e,t,n,s=document.getElementsByTagName("code");for(n=0;n<s.length;){if(t=s[n],t.parentNode.tagName!=="PRE"&&t.childElementCount===0&&!t.classList.contains("nolatex")&&(e=t.textContent,/^\$[^$]/.test(e)&&/[^$]\$$/.test(e)&&(e=e.replace(/^\$/,"\\(").replace(/\$$/,"\\)"),t.textContent=e),/^\\\((.|\s)+\\\)$/.test(e)||/^\\\[(.|\s)+\\\]$/.test(e)||/^\$(.|\s)+\$$/.test(e)||/^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(e))){t.outerHTML=t.innerHTML;continue}n++}})()</script>
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="//cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="//cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            
+            
+            
+            
+            
+            
+            trust: (context) => ['\\htmlId', '\\href'].includes(context.command),
+            macros: {
+              "\\eqref": "\\href{###1}{(\\text{#1})}",
+              "\\ref": "\\href{###1}{\\text{#1}}",
+              "\\label": "\\htmlId{#1}{}"
+            }
+        });
+    });
+</script>
+
+
+
+</body>
+
+</html>
