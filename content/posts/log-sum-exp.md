@@ -15,6 +15,7 @@ description: "math tricks for stability in Pytorch"
 ---
 
 -- old post -- 
+-- maintainence notice : I wrote this post long back, and have moved multiple templates / static site generators in the meantime. Most expressions should just work fine. But it might be breaking in some places, thanks for bearing with it. -- 
 
 When working with PyTorch for classification tasks, you'll encounter a common pattern: your model outputs raw scores (called **logits**), and you feed these directly into a loss function like `nn.CrossEntropyLoss` without first converting them to probabilities.
 
