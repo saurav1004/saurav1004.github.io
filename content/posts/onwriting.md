@@ -1,6 +1,6 @@
 ---
 author: Saurav
-date: '2023-07-02'
+date: '2025-06-18'
 title: On Writing
 meta: true
 math: false

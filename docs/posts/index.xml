@@ -6,21 +6,21 @@
     <description>Recent content in Posts on narrowfocus</description>
     <generator>Hugo</generator>
     <language>en-US</language>
-    <lastBuildDate>Sun, 02 Jul 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 18 Jun 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://saurav1004.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>On Writing</title>
+      <link>https://saurav1004.github.io/posts/onwriting/</link>
+      <pubDate>Wed, 18 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://saurav1004.github.io/posts/onwriting/</guid>
+      <description>On Writing as a Tool for Thought # If people cannot write well, they cannot think well, and if they cannot think well, others will do their thinking for them.&#xA;Writing is, for many, a formidable task. The difficulty often stems not from the mechanics of language but from a dual uncertainty: a lack of clarity about the subject and an anxiety about how their words will shape perception. There have been countless pieces of writing on how to overcome these problems.</description>
+    </item>
     <item>
       <title>Numerical Stability in Pytorch</title>
       <link>https://saurav1004.github.io/posts/numerical-stability/</link>
       <pubDate>Sun, 02 Jul 2023 00:00:00 +0000</pubDate>
       <guid>https://saurav1004.github.io/posts/numerical-stability/</guid>
       <description>&amp;ndash; old post &amp;ndash; # &amp;ndash; maintainence notice : I wrote this post long back, and have moved multiple templates / static site generators in the meantime. Most expressions should just work fine. But it might be breaking in some places, thanks for bearing with it. &amp;ndash; # The core of training a deep neural network is gradient-based optimization. We calculate how the model&amp;rsquo;s error changes with respect to each of its millions (or billions) of parameters and take a small step in the direction that reduces that error.</description>
-    </item>
-    <item>
-      <title>On Writing</title>
-      <link>https://saurav1004.github.io/posts/onwriting/</link>
-      <pubDate>Sun, 02 Jul 2023 00:00:00 +0000</pubDate>
-      <guid>https://saurav1004.github.io/posts/onwriting/</guid>
-      <description>On Writing as a Tool for Thought # If people cannot write well, they cannot think well, and if they cannot think well, others will do their thinking for them.&#xA;Writing is, for many, a formidable task. The difficulty often stems not from the mechanics of language but from a dual uncertainty: a lack of clarity about the subject and an anxiety about how their words will shape perception. There have been countless pieces of writing on how to overcome these problems.</description>
     </item>
     <item>
       <title>Log Sum Exp in Pytorch</title>
