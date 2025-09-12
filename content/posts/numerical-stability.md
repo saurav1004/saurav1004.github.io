@@ -17,7 +17,6 @@ description: "math tricks for stability in Pytorch"
 #### -- old post -- 
 #### -- maintainence notice : I wrote this post long back, and have moved multiple templates / static site generators in the meantime. Most expressions should just work fine. But it might be breaking in some places, thanks for bearing with it. -- 
 
-
 The core of training a deep neural network is gradient-based optimization. We calculate how the model's error changes with respect to each of its millions (or billions) of parameters and take a small step in the direction that reduces that error. While simple in theory, this process is fraught with numerical challenges. The gradients themselves, the very signals that guide learning, can become unruly.
 
 In this post, we will explore two fundamental techniques that every deep learning practitioner should understand, both designed to control the magnitude of gradients. First, we'll look at **Loss Scaling**, which rescues gradients that become too small. Second, we'll examine **Gradient Clipping**, which tames gradients that become too large. Together, they form a crucial part of the toolkit for stable and efficient model training.
