@@ -6,10 +6,6 @@ _build:
   list: never
 ---
 
-## [writings for engineers, by engineers](/awesomeblogs)
+## [Writings for engineers, by Engineers](/awesomeblogs)
 
 ## [Meta Research](/metaresearch)
-
-## [On Writing as a Tool for Thought](/onwriting)
-
-### [on learning]
