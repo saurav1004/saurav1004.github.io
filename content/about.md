@@ -10,7 +10,12 @@ _build:
 I’m no writer by trade; I write to make sense of my thoughts. This blog is a collection of my old and new notes made into short essays and writeups. 
 
 ### Saurav Panigrahi
-(meta)Engineer / Researcher / Realist <br />
+Research Engineer / Realist <br />
+
+I work on LLMs at Zoho. <br />
+My research interests include : post training methods, faithful reasoning models, verification systems and (practical) mechanistic interpretability. 
+
+I am also studying the different ways we can look at the impact of Data on large model training. 
 
 You can reach out to me [**@sauravlmx**](https://x.com/sauravlmx).
 I consider myself a hardcore realist to the point that I have come up with a [**Realist's Manifesto**](https://narrowfoc.us/posts/realist).

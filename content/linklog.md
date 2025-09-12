@@ -10,6 +10,6 @@ _build:
 
 ### [meta research](/metaresearch)
 
-### [on writing](/onwriting) (coming soon) 
+### [on writing](/onwriting)
 
 ### [on learning]
