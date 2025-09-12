@@ -1,7 +1,7 @@
 ---
 title: "On Writing"
 hasMath: false
-subtitle: If people cannot write well, they cannot think well -George Orwell 
+subtitle: If people cannot write well, they cannot think well - George Orwell 
 _build:
   list: never
 ---
