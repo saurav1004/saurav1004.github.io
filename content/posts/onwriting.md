@@ -1,12 +1,21 @@
 ---
-title: "On Writing"
+author: Saurav
+date: '2023-07-02'
+title: On Writing
+meta: true
+math: false
 hasMath: false
-subtitle: If people cannot write well, they cannot think well - George Orwell 
-_build:
-  list: never
+toc: false
+draft: false
+hideDate: false
+hideReadTime: true
+categories: [misc]
+description: "Writing as a Tool for Thought"
 ---
 
 ### On Writing as a Tool for Thought
+
+> If people cannot write well, they cannot think well, and if they cannot think well, others will do their thinking for them.
 
 Writing is, for many, a formidable task. The difficulty often stems not from the mechanics of language but from a dual uncertainty: a lack of clarity about the subject and an anxiety about how their words will shape perception. There have been countless pieces of writing on how to overcome these problems. And they are all great. 
 
