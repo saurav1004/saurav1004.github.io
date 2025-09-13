@@ -34,4 +34,8 @@ Navigating this graph of ideas is the first challenge. The second, more demandin
 
 Much of our internal monologue - and consequently, our initial, unedited writing - is merely plausible. To achieve rigorous, faithful thinking, one must apply a form of Occam's Razor to every claim, seeking the simplest, most direct line of reasoning that holds true.
 
-This distinction is paramount when writing is used as a tool for thought. If the written artifact is flawed i.e. if it settles for plausibility over faithfulness, then the underlying thought process it represents is equally flawed. 
+This distinction is paramount when writing is used as a tool for thought. If the written artifact is flawed i.e. if it settles for plausibility over faithfulness, then the underlying thought process it represents is equally flawed. And vice versa, you will end up writing dry plausible statements (like AI) if your thinking has gaps, or you didnt question yourself enough while writing down your ideas. 
+
+--- 
+
+PS. I am increasingly convinced about the problem of "plausibility vs faithfulness" as a fundamental challenge for AI systems and its compounding negative impact on human thinking and AI research itself. For more references see [this](https://www.lesswrong.com/posts/rarcxjGp47dcHftCP/your-llm-assisted-scientific-breakthrough-probably-isn-t) and [this](https://www.lesswrong.com/posts/2pkNCvBtK6G6FKoNn) 

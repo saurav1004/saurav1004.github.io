@@ -9,6 +9,13 @@
     <lastBuildDate>Wed, 18 Jun 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://saurav1004.github.io/categories/misc/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Faithfulness vs Plausibility</title>
+      <link>https://saurav1004.github.io/posts/faithfulness-vs-plausibility/</link>
+      <pubDate>Wed, 18 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://saurav1004.github.io/posts/faithfulness-vs-plausibility/</guid>
+      <description>In previous writeup on writing I talked briefly about the problem of plausibility vs faithfulness. I came across this core distinction while working with AI systems (particularly LLMs)&#xA;There has been quite some research in this area. Here are some key papers that highlight the problem :&#xA;Chain-of-Thought Reasoning In The Wild Is Not Always Faithful link Language Models Don&amp;rsquo;t Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Promptinglink Reasoning Models Don&amp;rsquo;t Always Say What They Think link When Chain of Thought is Necessary, Language Models Struggle to Evade Monitors link The Probabilities Also Matter link Faithfulness of LLM Self-Explanations for Commonsense Tasks link Walk the Talk [link](Walk the Talk) The core distinction is that faithfulness is a measure of truth, whereas plausibility is a measure of persuasiveness.</description>
+    </item>
+    <item>
       <title>On Writing</title>
       <link>https://saurav1004.github.io/posts/onwriting/</link>
       <pubDate>Wed, 18 Jun 2025 00:00:00 +0000</pubDate>

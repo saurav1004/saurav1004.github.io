@@ -25,5 +25,7 @@ Following researchers and engineers write about there systems in a lot of detail
 - [Reproducing Deep RL (Amid Fish)](http://amid.fish/reproducing-deep-rl) — Lessons from reproducing deep reinforcement learning results.
 - [ML Productivity (Amid Fish)](http://amid.fish/ml-productivity) — Tips and frameworks for productive ML research.
 - [Harvard CS197: Communicating Computer Science Research](https://docs.google.com/document/d/1uvAbEhbgS_M-uDMTzmOWRlYxqCkogKRXdbKYYT98ooc/edit?tab=t.0#heading=h.v0t4l9i4v4ww) — A comprehensive resource on research communication.
+- [Being Careful with LLM Assisted Research](https://www.lesswrong.com/posts/rarcxjGp47dcHftCP/your-llm-assisted-scientific-breakthrough-probably-isn-t)
+- [Being Careful with LLM Assisted Research](https://www.lesswrong.com/posts/2pkNCvBtK6G6FKoNn)
 
 Note : This is an incomplete list. I wish to keep it updated. Keep checking this page for further edits. 
