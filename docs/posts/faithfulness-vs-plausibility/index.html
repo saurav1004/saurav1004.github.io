@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description"
-    content="Writing as a Tool for Thought ">
+    content="Research summary  ">
 <link rel="canonical" href="https://saurav1004.github.io/posts/faithfulness-vs-plausibility/" />
 
 
@@ -60,7 +60,7 @@
 </section>
   <article id="main">
     <section>
-<h1 class="content-title">Faithfulness vs Plausibility</h1><span class="content-meta"><p class="author">Saurav</p><p class="date">2025-06-18</p></span></section>
+<h1 class="content-title">Faithfulness vs Plausibility&nbsp;:: Draft</h1><span class="content-meta"><p class="author">Saurav</p><p class="date">2025-06-18</p></span></section>
 
     
 
@@ -76,6 +76,9 @@
 <li>Walk the Talk [link](Walk the Talk)</li>
 </ul>
 <p>The core distinction is that faithfulness is a measure of <strong>truth</strong>, whereas plausibility is a measure of <strong>persuasiveness</strong>. An explanation is faithful if it accurately reflects the model&rsquo;s internal decision-making process. An explanation is plausible if it seems logical, coherent, and convincing to a human evaluator, regardless of its truthfulness.</p>
+<p>How to solve the Plausibility vs Faithfulness problem ?</p>
+<p>One way is to augment the current systems with harnesses that can monitor and control its output. This <a href="https://arxiv.org/pdf/2507.11473">direction</a> essentially tries to achieve that. The idea is if you can monitor then you can buil metrics around them, and if you can build efficient metrics you can control and steer the model as you with. This might be the immediate answer to the problme. But I feel this patch work cannot last long. And we need a architectural (model or the harness around it) fix to this problem, Something which is more verifiable and deterministic at inference, but still does not get rid of the <a href="https://openreview.net/pdf?id=NjNGlPh8Wh">expressivity</a> of transformer models.</p>
+<p>Some recent work in the latent space reasoning makes the problem even harder, as it&rsquo;s significantly to harder to monitor and control latent chain of thought.</p>
 <p>In writing</p>
 <p>I wrote about plau</p>
 <p>As a fundamental challenge in AI research.</p>
