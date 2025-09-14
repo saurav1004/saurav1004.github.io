@@ -27,7 +27,6 @@ There has been quite some research in this area. Here are some key papers that h
 
  The core distinction is that faithfulness is a measure of **truth**, whereas plausibility is a measure of **persuasiveness**. An explanation is faithful if it accurately reflects the model's internal decision-making process. An explanation is plausible if it seems logical, coherent, and convincing to a human evaluator, regardless of its truthfulness. 
 
-
 How to solve the Plausibility vs Faithfulness problem ? 
 
 One way is to augment the current systems with harnesses that can monitor and control its output. This [direction](https://arxiv.org/pdf/2507.11473) essentially tries to achieve that. The idea is if you can monitor then you can buil metrics around them, and if you can build efficient metrics you can control and steer the model as you with. This might be the immediate answer to the problme. But I feel this patch work cannot last long. And we need a architectural (model or the harness around it) fix to this problem, Something which is more verifiable and deterministic at inference, but still does not get rid of the [expressivity](https://openreview.net/pdf?id=NjNGlPh8Wh) of transformer models. 
