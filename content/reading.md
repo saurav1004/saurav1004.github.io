@@ -39,5 +39,8 @@ _build:
 * Think on these things by Jiddu Krishnamurti
 * Discourses by Epictetus 
 * Meditations by Marcus Aurelius 
+* Man's Search for Meaning Viktor E Frankl
+* Siddhartha by Herman Hesse 
+
 
 
