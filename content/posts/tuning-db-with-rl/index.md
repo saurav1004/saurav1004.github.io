@@ -57,7 +57,7 @@ $$ \Delta T_{t \to 0} = \frac{T_t - T_0}{T_0} \quad and \quad \Delta T_{t \to t-
 
 just testing : 
 
-$$ \lim_{n \to \infty} \sum_{k=1}^n \frac{1}{k^2} = \frac{\pi^2}{6} $$
+$$ \lim_{n \to \infty} \sum_{k=1}^n \frac{1}{k^2} = \frac{\pi^2}{6-t+p} $$
 
 Similar expressions can be defined for latency. The reward function can then be designed to give a positive signal when the performance improves relative to the baseline ($T_t > T_0$) and also incorporates the incremental improvement from the last step. A simplified form of the reward logic is:
 
