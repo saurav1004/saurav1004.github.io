@@ -53,14 +53,12 @@ The reward is a scalar feedback signal that tells the agent how well it's doing.
 
 A robust reward function, as proposed in CDBTune, considers both the immediate change in performance and the overall improvement relative to the initial state. Let $T_t$ and $L_t$ be the throughput and latency at time $t$, and let $T_0$ and $L_0$ be the initial performance metrics. We can define the performance change from the initial state ($\Delta_{t \rightarrow 0}$) and the previous state ($\Delta_{t \rightarrow t-1}$) for throughput as:
 
-\[
 \begin{equation}
 \begin{aligned}
 \Delta T_{t \rightarrow 0} &= \frac{T_t - T_0}{T_0} \\
 \text{and} \quad \Delta T_{t \rightarrow t-1} &= \frac{T_t - T_{t-1}}{T_{t-1}}
 \end{aligned}
 \end{equation}
-\]
 
 Similar expressions can be defined for latency. The reward function can then be designed to give a positive signal when the performance improves relative to the baseline ($T_t > T_0$) and also incorporates the incremental improvement from the last step. A simplified form of the reward logic is:
 
