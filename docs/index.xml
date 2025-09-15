@@ -44,6 +44,13 @@
       <description>The year of 2024 was of RL algorithms. Numerous new algorithms were applied for Reinforcement Learning of Large Language Models. As someone working with these methods or LLMs in general, it becomes crucial to understand the internals of these algorithms and how they relate to each other. And not just that, but answering why did we do that small change, was it really necessary, was it worth it ? and so on.</description>
     </item>
     <item>
+      <title>Using RL to make Databases go brrr (maybe)</title>
+      <link>https://saurav1004.github.io/posts/tuning-db-with-rl/</link>
+      <pubDate>Thu, 26 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://saurav1004.github.io/posts/tuning-db-with-rl/</guid>
+      <description>For decades, database performance tuning has been a &amp;ldquo;black art.&amp;rdquo; A modern Database Management System (DBMS) can expose hundreds of configuration &amp;ldquo;knobs&amp;rdquo;—parameters that control everything from memory allocation for buffers and caches to I/O concurrency and logging behavior. The optimal settings for these knobs are not universal; they depend intricately on the specific hardware, the data distribution, and, most importantly, the dynamic workload the database is serving.&#xA;Finding the right combination of knob settings is an NP-hard problem.</description>
+    </item>
+    <item>
       <title>Numerical Stability in Pytorch</title>
       <link>https://saurav1004.github.io/posts/numerical-stability/</link>
       <pubDate>Sun, 02 Jul 2023 00:00:00 +0000</pubDate>
