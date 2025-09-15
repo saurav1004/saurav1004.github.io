@@ -6,7 +6,7 @@ meta: true
 math: true
 hasMath: true
 toc: false
-draft: false
+draft: true
 hideDate: false
 hideReadTime: true
 categories: [misc]
