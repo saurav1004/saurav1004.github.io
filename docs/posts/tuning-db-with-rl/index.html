@@ -60,25 +60,25 @@
 </section>
   <article id="main">
     <section>
-<h1 class="content-title">Using RL to make Databases go brrr (maybe)&nbsp;:: Draft</h1><span class="content-meta"><p class="author">Saurav</p><p class="date">2024-12-26</p></span></section>
+<h1 class="content-title">Using RL to make Databases go brrr (maybe)</h1><span class="content-meta"><p class="author">Saurav</p><p class="date">2024-12-26</p></span></section>
 
     
 
     <section><p>For decades, database performance tuning has been a &ldquo;black art.&rdquo; A modern Database Management System (DBMS) can expose hundreds of configuration &ldquo;knobs&rdquo;—parameters that control everything from memory allocation for buffers and caches to I/O concurrency and logging behavior. The optimal settings for these knobs are not universal; they depend intricately on the specific hardware, the data distribution, and, most importantly, the dynamic workload the database is serving.</p>
 <p>Finding the right combination of knob settings is an NP-hard problem. A seasoned Database Administrator (DBA) develops an intuition over years of experience, but even the most skilled expert struggles to navigate this vast, high-dimensional search space, especially in dynamic cloud environments where workloads can shift without warning.</p>
-<p>Machine learning has emerged as a promising way to automate this process. While techniques like Bayesian Optimization (BO) have shown success, they often treat tuning as a static, black-box optimization problem. Andy Pavlo&rsquo;s research group (whose <a href="https://www.youtube.com/@CMUDatabaseGroup">DBMS lectures</a> we all love!!) and startup (Ottertune) was trying to tackle the problem through this very method. Here is their paper from 2017: <a href="https://db.cs.cmu.edu/papers/2017/p1009-van-aken.pdf">https://db.cs.cmu.edu/papers/2017/p1009-van-aken.pdf</a>. However, there journey came to an <a href="https://x.com/andy_pavlo/status/1801687420330770841">abrupt ending</a> couple of years later raising a <a href="https://www.intelcapital.com/ottertune-raises-12-million-series-a-funding-to-revolutionize-cloud-database-operations-led-by-intel-capital-and-race-capital/">good sum of venture capital</a>. We dont know what happened there. Ok enough gossip !! coming back to the topic, Reinforcement Learning (RL), however, offers a different and powerful paradigm: it reframes tuning as a <em>sequential decision-making process</em>, where a software agent learns an optimal tuning <em>policy</em> through direct interaction with the database. This method was primarily developed at Guoliang Li&rsquo;s research group at Tsinghua University. Later comparative studies, framework and reproducible codebase came from Peking.</p>
+<p>Machine learning has emerged as a promising way to automate this process. While techniques like Bayesian Optimization (BO) have shown success, they often treat tuning as a static, black-box optimization problem. Andy Pavlo&rsquo;s research group (whose <a href="https://www.youtube.com/@CMUDatabaseGroup">DBMS lectures</a> we all love!!) and startup (Ottertune) was trying to tackle the problem through this very method. Here is their paper from 2017: <a href="https://db.cs.cmu.edu/papers/2017/p1009-van-aken.pdf">https://db.cs.cmu.edu/papers/2017/p1009-van-aken.pdf</a>. However, there journey came to an <a href="https://x.com/andy_pavlo/status/1801687420330770841">abrupt ending</a> couple of years later raising a <a href="https://www.intelcapital.com/ottertune-raises-12-million-series-a-funding-to-revolutionize-cloud-database-operations-led-by-intel-capital-and-race-capital/">good sum of venture capital</a>. We dont know what happened there. Ok enough gossip !! Coming back to the topic, Reinforcement Learning (RL), however, offers a different and powerful paradigm: it reframes tuning as a <em>sequential decision-making process</em>, where a software agent learns an optimal tuning <em>policy</em> through direct interaction with the database. This method was primarily developed at Guoliang Li&rsquo;s research group at Tsinghua University. Later comparative studies, framework and reproducible codebase came from Peking.</p>
 <p>This post provides a mathematically rigorous, first-principles guide to understanding and applying deep reinforcement learning for DBMS configuration tuning. We will dissect how to frame this as an RL problem and delve into the mechanics of the Deep Deterministic Policy Gradient (DDPG) algorithm, a method uniquely suited for this challenge.</p>
 <hr>
-<h3 id="framing-dbms-tuning-as-a-reinforcement-learning-problem">
+<h2 id="framing-dbms-tuning-as-a-reinforcement-learning-problem">
 Framing DBMS Tuning as a Reinforcement Learning Problem
 <a href="#framing-dbms-tuning-as-a-reinforcement-learning-problem" class="heading-anchor">#</a>
-</h3>
+</h2>
 <p>The first step in applying RL is to formally define the problem within the mathematical framework of a <strong>Markov Decision Process (MDP)</strong>. An MDP is a model for sequential decision-making where the outcomes are partly random and partly under the control of a decision-maker, or &ldquo;agent.&rdquo; In our case, the agent is our tuning system, and the &ldquo;environment&rdquo; is the DBMS itself.</p>
 <p>An MDP is defined by a tuple $(S, A, P, R, \gamma)$. Let&rsquo;s break down each component in the context of database tuning, as exemplified by pioneering systems like CDBTune.</p>
-<h4 id="state-s_t-in-s">
+<h3 id="state-s_t-in-s">
 State ($s_t \in S$)
 <a href="#state-s_t-in-s" class="heading-anchor">#</a>
-</h4>
+</h3>
 <p>The state is a snapshot of the environment that the agent observes at a given time $t$. For the agent to make an informed decision, the state must capture the operational status of the DBMS. A simple performance metric like throughput isn&rsquo;t enough; we need a richer representation.</p>
 <p>The solution is to use the DBMS&rsquo;s own <strong>internal metrics</strong>. These are the hundreds of counters and gauges that the system maintains about its own performance, accessible through commands like <code>SHOW STATUS</code> in MySQL. These metrics include:</p>
 <ul>
@@ -88,16 +88,16 @@ State ($s_t \in S$)
 <li><strong>Query execution statistics</strong>: <code>Select_scan</code>, <code>Sort_rows</code></li>
 </ul>
 <p>A state vector $s_t$ is formed by collecting these metrics (e.g., 63 different metrics in CDBTune ) over a short interval. This vector provides a high-dimensional signature of the database&rsquo;s behavior under the current configuration and workload.</p>
-<h4 id="action-a_t-in-a">
+<h3 id="action-a_t-in-a">
 Action ($a_t \in A$)
 <a href="#action-a_t-in-a" class="heading-anchor">#</a>
-</h4>
+</h3>
 <p>The action is what the agent <em>does</em> to influence the environment. In our case, an action corresponds to applying a new set of values to the DBMS&rsquo;s tunable knobs.</p>
 <p>This is where the problem becomes challenging. The action space is both <strong>high-dimensional</strong> (we might be tuning dozens or hundreds of knobs simultaneously) and <strong>continuous</strong> (knobs like <code>innodb_buffer_pool_size</code> can take any value within a range). This immediately disqualifies simpler RL algorithms like tabular Q-learning or standard Deep Q-Networks (DQN), which are designed for discrete, low-dimensional action spaces.</p>
-<h4 id="reward-r_t-in-r">
+<h3 id="reward-r_t-in-r">
 Reward ($r_t \in R$)
 <a href="#reward-r_t-in-r" class="heading-anchor">#</a>
-</h4>
+</h3>
 <p>The reward is a scalar feedback signal that tells the agent how well it&rsquo;s doing. The agent&rsquo;s goal is to learn a policy that maximizes the cumulative reward over time. The reward function must be carefully designed to align with the DBA&rsquo;s ultimate goal: improving performance.</p>
 <p>A robust reward function, as proposed in CDBTune, considers both the immediate change in performance and the overall improvement relative to the initial state. Let $T_t$ and $L_t$ be the throughput and latency at time $t$, and let $T_0$ and $L_0$ be the initial performance metrics. We can define the performance change from the initial state ($\Delta_{t \rightarrow 0}$) and the previous state ($\Delta_{t \rightarrow t-1}$) for throughput as:</p>
 <p>$$\Delta T_{t \rightarrow 0} = \frac{T_t - T_0}{T_0} \quad \text{and} \quad \Delta T_{t \rightarrow t-1} = \frac{T_t - T_{t-1}}{T_{t-1}}$$</p>
@@ -110,16 +110,16 @@ f(\Delta_{t \rightarrow 0}, \Delta_{t \rightarrow t-1}) &amp; \text{if } \Delta_
 \end{cases}
 $$</p>
 <p>where $f$ and $g$ are functions that combine the deltas. This structure encourages the agent to find configurations that are not just marginally better than the last, but fundamentally better than the starting point.</p>
-<h4 id="policy-pia_ts_t">
+<h3 id="policy-pia_ts_t">
 Policy ($\pi(a_t|s_t)$)
 <a href="#policy-pia_ts_t" class="heading-anchor">#</a>
-</h4>
+</h3>
 <p>The policy is the agent&rsquo;s brain. It&rsquo;s the strategy the agent uses to select actions based on the current state. In deep RL, the policy is represented by a deep neural network that takes the state vector $s_t$ as input and outputs an action vector $a_t$ (the knob settings). The goal of the entire learning process is to find the optimal policy, $\pi^*$, which maximizes the expected cumulative reward.</p>
 <hr>
-<h3 id="the-algorithm-of-choice-deep-deterministic-policy-gradient-ddpg">
+<h2 id="the-algorithm-of-choice-deep-deterministic-policy-gradient-ddpg">
 The Algorithm of Choice: Deep Deterministic Policy Gradient (DDPG)
 <a href="#the-algorithm-of-choice-deep-deterministic-policy-gradient-ddpg" class="heading-anchor">#</a>
-</h3>
+</h2>
 <p>To handle the high-dimensional, continuous action space of DBMS tuning, we need a sophisticated algorithm. DDPG is an excellent choice because it combines ideas from DQN with an <strong>Actor-Critic</strong> architecture designed specifically for continuous control.</p>
 <p><img src="DDPG.png" alt="DDPG"></p>
 <p>DDPG maintains two main neural networks (and two corresponding &ldquo;target&rdquo; networks for stability):</p>
@@ -127,10 +127,10 @@ The Algorithm of Choice: Deep Deterministic Policy Gradient (DDPG)
 <li><strong>The Actor Network ($\mu(s|\theta^\mu)$)</strong>: This network represents the policy. It takes the state $s$ as input and outputs a single, <em>deterministic</em> action $a$ (a vector of specific knob values). It is the &ldquo;actor&rdquo; because it decides what to do.</li>
 <li><strong>The Critic Network ($Q(s, a|\theta^Q)$)</strong>: This network learns the action-value function (the Q-value). It takes both a state $s$ and an action $a$ as input and outputs a single scalar value that estimates the expected cumulative future reward of taking action $a$ in state $s$. It is the &ldquo;critic&rdquo; because it evaluates the actions taken by the actor.</li>
 </ol>
-<h4 id="the-learning-loop">
+<h3 id="the-learning-loop">
 The Learning Loop
 <a href="#the-learning-loop" class="heading-anchor">#</a>
-</h4>
+</h3>
 <p>The Actor and Critic learn in a symbiotic loop, using data sampled from an <strong>Experience Replay Memory</strong>. This memory stores past transitions $(s_t, a_t, r_t, s_{t+1})$ so that the networks can be trained on a diverse batch of uncorrelated experiences, which is crucial for stable learning.</p>
 <p>Here&rsquo;s how they are trained at each step, using a mini-batch of $N$ transitions from the replay memory:</p>
 <p><strong>1. Training the Critic:</strong> The Critic is trained to approximate the Bellman equation, much like in DQN. We first compute a target Q-value, $y_i$, for each sample in the mini-batch. This target is formed by taking the immediate reward $r_i$ and adding the discounted Q-value of the <em>next</em> action, as predicted by the <em>target</em> networks (denoted with a prime, $Q&rsquo;$ and $\mu&rsquo;$):</p>
@@ -142,10 +142,10 @@ The Learning Loop
 <p>This update nudges the Actor&rsquo;s weights in the direction that will produce actions with higher Q-values for the given states.</p>
 <p><strong>3. Exploration</strong>: Since the actor&rsquo;s policy is deterministic, we must add noise to its actions during training to ensure adequate exploration of the state-action space. This is often done by adding a temporally correlated noise process (like an Ornstein-Uhlenbeck process) or simply Gaussian noise to the action vector before it is applied to the environment.</p>
 <hr>
-<h3 id="a-practical-end-to-end-workflow">
+<h2 id="a-practical-end-to-end-workflow">
 A Practical End-to-End Workflow
 <a href="#a-practical-end-to-end-workflow" class="heading-anchor">#</a>
-</h3>
+</h2>
 <p>An RL-based tuning system like CDBTune typically operates in two phases:</p>
 <ol>
 <li><strong>Offline Training</strong>: First, a general-purpose tuning model is trained offline. This requires generating a diverse set of experiences. Standard database benchmarks like TPC-C and Sysbench are used to create various workloads, and the agent interacts with the DBMS under these workloads to populate its experience replay memory and learn a foundational tuning policy. This is a one-time, computationally intensive process that can take several hours.</li>
@@ -154,10 +154,10 @@ A Practical End-to-End Workflow
 <p>A lot of the reproducible code and a full fledged framework combining Knob Selection, Config Optimisation and Knowledge Transfer comes from this github repository from the DB group at Peking : <a href="https://github.com/PKU-DAIR/DBTune">https://github.com/PKU-DAIR/DBTune</a></p>
 <p><img src="PKU_DAIR_DBTune.png" alt="PKU-DAIR/DBTune"></p>
 <hr>
-<h3 id="challenges-and-frontiers">
+<h2 id="challenges-and-frontiers">
 Challenges and Frontiers
 <a href="#challenges-and-frontiers" class="heading-anchor">#</a>
-</h3>
+</h2>
 <p>While powerful, the deep RL approach is not a silver bullet. Rigorous research demands we acknowledge its limitations, many of which are active areas of research.</p>
 <ul>
 <li><strong>Safety and the &ldquo;Trial-and-Error&rdquo; Problem</strong>: The core learning mechanism of RL is exploration. An agent <em>must</em> try suboptimal or even bad actions to learn what not to do. In a simulated environment, this is acceptable. On a live production database, recommending a configuration that degrades performance by 50% or, worse, crashes the system, is catastrophic. This &ldquo;unsafe exploration&rdquo; is the single biggest challenge for deploying pure RL tuners online.</li>
@@ -167,21 +167,27 @@ Challenges and Frontiers
 </ul>
 <p>Bohan Zhang (cofounder at Ottertune) has an <a href="https://www.youtube.com/watch?v=suG2tMeDxZE">awesome talk</a> from the HTAP Summit 2023 about some aspects of the problem which make it extremely hard to solve. Lack of repeatable workloads, no fixed baseline, lack of high fidelity training environments and what not. There are a lot of challenges and this remains an interesting (and hard) problem to look at.</p>
 <p>These challenges are driving the next wave of research, exploring hybrid models that combine the end-to-end learning of RL with the safety guarantees of constrained optimization methods or the adaptability of contextual models.</p>
-<h3 id="references">
+<h2 id="references">
 References
 <a href="#references" class="heading-anchor">#</a>
+</h2>
+<h3 id="using-rl-for-database-autotuning-">
+Using RL for Database Autotuning :
+<a href="#using-rl-for-database-autotuning-" class="heading-anchor">#</a>
 </h3>
-<p>Using RL for Database Autotuning :</p>
 <ol>
 <li><a href="https://dbgroup.cs.tsinghua.edu.cn/ligl/papers/sigmod19-cdbtune.pdf">https://dbgroup.cs.tsinghua.edu.cn/ligl/papers/sigmod19-cdbtune.pdf</a> : An End-to-End Automatic Cloud Database Tuning System Using Deep Reinforcement Learning</li>
 <li><a href="https://arxiv.org/pdf/2110.12654">https://arxiv.org/pdf/2110.12654</a> : Facilitating Database Tuning with Hyper-Parameter Optimization: A Comprehensive Experimental Evaluation</li>
 <li><a href="https://arxiv.org/pdf/2203.14473">https://arxiv.org/pdf/2203.14473</a> : Towards Dynamic and Safe Configuration Tuning for Cloud Databases</li>
 <li><a href="https://github.com/PKU-DAIR/DBTune">https://github.com/PKU-DAIR/DBTune</a></li>
 </ol>
-<p>AI Driven Databases :</p>
+<h3 id="ai-driven-databases-">
+AI Driven Databases :
+<a href="#ai-driven-databases-" class="heading-anchor">#</a>
+</h3>
 <ol start="5">
 <li><a href="https://aws.amazon.com/blogs/machine-learning/tuning-your-dbms-automatically-with-machine-learning/">https://aws.amazon.com/blogs/machine-learning/tuning-your-dbms-automatically-with-machine-learning/</a></li>
-<li>Dan Van Aken&rsquo;s(one of the co-founders of Ottertune) Phd Thesis : <a href="https://www.danavanaken.com/files/vanaken21-thesis.pdf">https://www.danavanaken.com/files/vanaken21-thesis.pdf</a></li>
+<li>Dan Van Aken&rsquo;s (one of the co-founders of Ottertune) Phd Thesis : <a href="https://www.danavanaken.com/files/vanaken21-thesis.pdf">https://www.danavanaken.com/files/vanaken21-thesis.pdf</a></li>
 <li>Bohan Zhang&rsquo;s Research Works : <a href="https://bohanzhang.me/#research">https://bohanzhang.me/#research</a></li>
 </ol>
 </section>
@@ -250,6 +256,36 @@ References
   </article>
   
 
+
+
+
+
+
+  <script>(function(){var e,t,n,s=document.getElementsByTagName("code");for(n=0;n<s.length;){if(t=s[n],t.parentNode.tagName!=="PRE"&&t.childElementCount===0&&!t.classList.contains("nolatex")&&(e=t.textContent,/^\$[^$]/.test(e)&&/[^$]\$$/.test(e)&&(e=e.replace(/^\$/,"\\(").replace(/\$$/,"\\)"),t.textContent=e),/^\\\((.|\s)+\\\)$/.test(e)||/^\\\[(.|\s)+\\\]$/.test(e)||/^\$(.|\s)+\$$/.test(e)||/^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(e))){t.outerHTML=t.innerHTML;continue}n++}})()</script>
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="//cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="//cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            
+            
+            
+            
+            
+            
+            trust: (context) => ['\\htmlId', '\\href'].includes(context.command),
+            macros: {
+              "\\eqref": "\\href{###1}{(\\text{#1})}",
+              "\\ref": "\\href{###1}{\\text{#1}}",
+              "\\label": "\\htmlId{#1}{}"
+            }
+        });
+    });
+</script>
 
 
 
