@@ -68,7 +68,6 @@
 <p>Finding the right combination of knob settings is an NP-hard problem. A seasoned Database Administrator (DBA) develops an intuition over years of experience, but even the most skilled expert struggles to navigate this vast, high-dimensional search space, especially in dynamic cloud environments where workloads can shift without warning.</p>
 <p>Machine learning has emerged as a promising way to automate this process. While techniques like Bayesian Optimization (BO) have shown success, they often treat tuning as a static, black-box optimization problem. Andy Pavlo&rsquo;s research group (whose <a href="https://www.youtube.com/@CMUDatabaseGroup">DBMS lectures</a> we all love!!) and startup (Ottertune) was trying to tackle the problem through this very method. Here is their paper from 2017: <a href="https://db.cs.cmu.edu/papers/2017/p1009-van-aken.pdf">https://db.cs.cmu.edu/papers/2017/p1009-van-aken.pdf</a>. However, there journey came to an <a href="https://x.com/andy_pavlo/status/1801687420330770841">abrupt ending</a> couple of years later raising a <a href="https://www.intelcapital.com/ottertune-raises-12-million-series-a-funding-to-revolutionize-cloud-database-operations-led-by-intel-capital-and-race-capital/">good sum of venture capital</a>. We dont know what happened there. Ok enough gossip !! Coming back to the topic, Reinforcement Learning (RL), however, offers a different and powerful paradigm: it reframes tuning as a <em>sequential decision-making process</em>, where a software agent learns an optimal tuning <em>policy</em> through direct interaction with the database. This method was primarily developed at Guoliang Li&rsquo;s research group at Tsinghua University. Later comparative studies, framework and reproducible codebase came from Peking.</p>
 <p>This post provides a mathematically rigorous, first-principles guide to understanding and applying deep reinforcement learning for DBMS configuration tuning. We will dissect how to frame this as an RL problem and delve into the mechanics of the Deep Deterministic Policy Gradient (DDPG) algorithm, a method uniquely suited for this challenge.</p>
-<hr>
 <h2 id="framing-dbms-tuning-as-a-reinforcement-learning-problem">
 Framing DBMS Tuning as a Reinforcement Learning Problem
 <a href="#framing-dbms-tuning-as-a-reinforcement-learning-problem" class="heading-anchor">#</a>
@@ -115,10 +114,9 @@ Policy ($\pi(a_t|s_t)$)
 <a href="#policy-pia_ts_t" class="heading-anchor">#</a>
 </h3>
 <p>The policy is the agent&rsquo;s brain. It&rsquo;s the strategy the agent uses to select actions based on the current state. In deep RL, the policy is represented by a deep neural network that takes the state vector $s_t$ as input and outputs an action vector $a_t$ (the knob settings). The goal of the entire learning process is to find the optimal policy, $\pi^*$, which maximizes the expected cumulative reward.</p>
-<hr>
-<h2 id="the-algorithm-of-choice-deep-deterministic-policy-gradient-ddpg">
-The Algorithm of Choice: Deep Deterministic Policy Gradient (DDPG)
-<a href="#the-algorithm-of-choice-deep-deterministic-policy-gradient-ddpg" class="heading-anchor">#</a>
+<h2 id="deep-deterministic-policy-gradient-ddpg">
+Deep Deterministic Policy Gradient (DDPG)
+<a href="#deep-deterministic-policy-gradient-ddpg" class="heading-anchor">#</a>
 </h2>
 <p>To handle the high-dimensional, continuous action space of DBMS tuning, we need a sophisticated algorithm. DDPG is an excellent choice because it combines ideas from DQN with an <strong>Actor-Critic</strong> architecture designed specifically for continuous control.</p>
 <p><img src="DDPG.png" alt="DDPG"></p>
@@ -141,10 +139,9 @@ The Learning Loop
 <p>$$\nabla_{\theta^\mu} J \approx \frac{1}{N} \sum_{i=1}^{N} \nabla_a Q(s, a|\theta^Q)|<em>{s=s_i, a=\mu(s_i)} \nabla</em>{\theta^\mu} \mu(s|\theta^\mu)|_{s_i}$$</p>
 <p>This update nudges the Actor&rsquo;s weights in the direction that will produce actions with higher Q-values for the given states.</p>
 <p><strong>3. Exploration</strong>: Since the actor&rsquo;s policy is deterministic, we must add noise to its actions during training to ensure adequate exploration of the state-action space. This is often done by adding a temporally correlated noise process (like an Ornstein-Uhlenbeck process) or simply Gaussian noise to the action vector before it is applied to the environment.</p>
-<hr>
-<h2 id="a-practical-end-to-end-workflow">
-A Practical End-to-End Workflow
-<a href="#a-practical-end-to-end-workflow" class="heading-anchor">#</a>
+<h2 id="end-to-end-workflow">
+End-to-End Workflow
+<a href="#end-to-end-workflow" class="heading-anchor">#</a>
 </h2>
 <p>An RL-based tuning system like CDBTune typically operates in two phases:</p>
 <ol>
@@ -153,7 +150,6 @@ A Practical End-to-End Workflow
 </ol>
 <p>A lot of the reproducible code and a full fledged framework combining Knob Selection, Config Optimisation and Knowledge Transfer comes from this github repository from the DB group at Peking : <a href="https://github.com/PKU-DAIR/DBTune">https://github.com/PKU-DAIR/DBTune</a></p>
 <p><img src="PKU_DAIR_DBTune.png" alt="PKU-DAIR/DBTune"></p>
-<hr>
 <h2 id="challenges-and-frontiers">
 Challenges and Frontiers
 <a href="#challenges-and-frontiers" class="heading-anchor">#</a>

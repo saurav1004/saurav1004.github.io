@@ -21,8 +21,6 @@ Machine learning has emerged as a promising way to automate this process. While 
 
 This post provides a mathematically rigorous, first-principles guide to understanding and applying deep reinforcement learning for DBMS configuration tuning. We will dissect how to frame this as an RL problem and delve into the mechanics of the Deep Deterministic Policy Gradient (DDPG) algorithm, a method uniquely suited for this challenge.
 
-***
-
 ## Framing DBMS Tuning as a Reinforcement Learning Problem
 
 The first step in applying RL is to formally define the problem within the mathematical framework of a **Markov Decision Process (MDP)**. An MDP is a model for sequential decision-making where the outcomes are partly random and partly under the control of a decision-maker, or "agent." In our case, the agent is our tuning system, and the "environment" is the DBMS itself.
@@ -73,9 +71,7 @@ where $f$ and $g$ are functions that combine the deltas. This structure encourag
 
 The policy is the agent's brain. It's the strategy the agent uses to select actions based on the current state. In deep RL, the policy is represented by a deep neural network that takes the state vector $s_t$ as input and outputs an action vector $a_t$ (the knob settings). The goal of the entire learning process is to find the optimal policy, $\pi^*$, which maximizes the expected cumulative reward.
 
-***
-
-## The Algorithm of Choice: Deep Deterministic Policy Gradient (DDPG)
+## Deep Deterministic Policy Gradient (DDPG)
 
 To handle the high-dimensional, continuous action space of DBMS tuning, we need a sophisticated algorithm. DDPG is an excellent choice because it combines ideas from DQN with an **Actor-Critic** architecture designed specifically for continuous control.
 
@@ -108,9 +104,7 @@ This update nudges the Actor's weights in the direction that will produce action
 
 **3. Exploration**: Since the actor's policy is deterministic, we must add noise to its actions during training to ensure adequate exploration of the state-action space. This is often done by adding a temporally correlated noise process (like an Ornstein-Uhlenbeck process) or simply Gaussian noise to the action vector before it is applied to the environment.
 
-***
-
-## A Practical End-to-End Workflow
+## End-to-End Workflow
 
 An RL-based tuning system like CDBTune typically operates in two phases:
 
@@ -120,8 +114,6 @@ An RL-based tuning system like CDBTune typically operates in two phases:
 A lot of the reproducible code and a full fledged framework combining Knob Selection, Config Optimisation and Knowledge Transfer comes from this github repository from the DB group at Peking : https://github.com/PKU-DAIR/DBTune  
 
 ![PKU-DAIR/DBTune](PKU_DAIR_DBTune.png)
-
-***
 
 ## Challenges and Frontiers
 
